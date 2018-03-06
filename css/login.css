@@ -7,25 +7,27 @@ body {
 .email-login {
   text-align: center;
   font-size: 18px;
-  margin-top: 180px;
+  margin-top: 10%;
 }
 
 .input-panel {
   float: left;
-  margin-left: 40%;
+  margin-left: 45%;
 }
 
 .warning-panel {
   float: left;
-  margin-top: 7%;
+  margin-top: 20px;
+  margin-left: 5px;
 }
 
 .login-btn {
   height: 20px;
   width: 58px;
-  font-size: 16px;
+  margin-right: 55%;
+  font-size: 13px;
 }
 
 .register-btn {
-  margin-left: 10px;
+  margin-left: -50px;
 }

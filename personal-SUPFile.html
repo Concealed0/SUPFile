@@ -5,27 +5,7 @@
   <meta charset="utf-8">
   <title>SUPFile - Personal Page</title>
   <link href="css/personal-SUPFile.css" rel="stylesheet" />
-  <script>
-    //  Edit title by user's email address when init page
-    window.onload = function () {
-      var xmlhttp;
-      if (window.XMLHttpRequest) {
-        //  IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-      } else {
-        // IE6, IE5
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-      }
-      xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          document.getElementById("emailAddressLogged").innerHTML = xmlhttp.responseText;
-          document.title = "SUPFile - " + xmlhttp.responseText;
-        }
-      }
-      xmlhttp.open("GET", "getEmailLogged.php", true);
-      xmlhttp.send();
-    };
-  </script>
+  <script src="js/personal-SUPFile.js"></script>
 </head>
 
 <body>
@@ -46,11 +26,10 @@
   </div>
   <div class="frame-main">
     <div class="frame-tool-top">
-      <button>Create a folder</button>
-      <button style="margin-left: 15px;">Add a file</button>
+      <button id="createFolderBtn">Create a folder</button>
+      <button id="createFileBtn" style="margin-left: 15px;">Add a file</button>
     </div>
-    <div class="frame-file" style="overflow: auto;">
-
+    <div class="frame-file" id="frame-file" style="overflow: auto; margin-left: 1%; margin-top: 1%;">
     </div>
   </div>
   <div class="copyright">

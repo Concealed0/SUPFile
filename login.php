@@ -39,13 +39,18 @@ try {
 */
 
 //  User input email address & password test and search in db
+//  Check log status(0: un log & 1: logged)
 $sql = "SELECT * FROM user_list WHERE email_address='$emailAddressInput' AND password='$passwordInput'";
 $result = $conn->query($sql);
-if ($result->num_rows >= 1) {
-  $_SESSION['isLogged'] = true;
+$row = $result->fetch_assoc();
+if ($result->num_rows == 1 && $row["log_status"] == 0) {
   $_SESSION['emailAddress'] = $emailAddressInput;
+  $conn->query("UPDATE user_list SET log_status=1 WHERE email_address='$emailAddressInput'");
   echo "<script>alert('Login Success!');</script>";
   echo "<script>window.location.href='personal-SUPFile.html'</script>";
+} else if ($row["log_status"] == 1) {
+  echo "<script>alert('This account has been logged!');</script>";
+  echo "<script>window.location.href='login.html'</script>";
 } else {
   echo "<script>alert('Did not find this user or Password error!');</script>";
   echo "<script>window.location.href='login.html'</script>";

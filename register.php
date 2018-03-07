@@ -105,11 +105,13 @@ if ($result->num_rows > 0) {//  Email has been registered
   echo "<script>alert('Hello world!');</script>";
   */
   
-  
   //  Add account in MySQL
   $sql = "INSERT INTO user_list (username, password, email_address) VALUES ('$nameInput', '$passwordInput', '$emailAddressInput')";
-
   if ($conn->query($sql) === TRUE) {
+    $dir = iconv("UTF-8", "GBK", "./account/" . $emailAddressInput);
+    if (!file_exists($dir)) {
+      mkdir($dir, 0777);
+    }
     echo "<script>alert('Register success!');</script>";
     echo "<script>window.location.href='login.html'</script>";
   } else {
@@ -117,7 +119,6 @@ if ($result->num_rows > 0) {//  Email has been registered
     echo "<script>alert($msg);</script>";
     echo "<script>window.location.href='register.html'</script>";
   }
-  
 }
 
 /*  PHPMailer function

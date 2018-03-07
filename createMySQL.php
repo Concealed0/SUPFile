@@ -36,7 +36,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `user_list`(
   `username` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `email_address` VARCHAR(40) NOT NULL,
-  `log_status` INT(2) NOT NULL DEFAULT '1',
+  `log_status` INT(2) NOT NULL DEFAULT '0',
   PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 if ($conn->query($sql) === TRUE) {

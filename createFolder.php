@@ -6,12 +6,23 @@ $inputFolderName = $_GET['newFolderName'];
 $dir = iconv("UTF-8", "GBK", "./account/".$emailAddress."/".$inputFolderName);
 if (!file_exists($dir)) {
   mkdir($dir, 0777);
+  
+  $responseText = array();
+  $i = 0;
+  $handler = opendir('./account/' . $emailAddress);
+  while (($filename = readdir($handler)) !== false) {
+    if ($filename != "." && $filename != "..") {
+      $responseText[$i] = $filename;
+      $i++;
+    }
+  }
+  echo json_encode($responseText);
 } else {
   echo "<script>alert('mkdir failed!');</script>";
 }
 
+/*
 echo "<table border='1'><tr><td colspan='6'>File Name</td></tr>";
-
 $renameBtn = "<td><button>Rename</button></td>";
 $deleteBtn = "<td><button>Delete</button></td>";
 $downloadBtn = "<td><button>Download</button></td>";
@@ -25,6 +36,5 @@ while (($filename = readdir($handler)) !== false) {
     echo "<tr><td>".$filename."</td>".$functionStr."</tr>";
   }
 }
-
-echo "</table>";
+echo "</table>";*/
 ?>

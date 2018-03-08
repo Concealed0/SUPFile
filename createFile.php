@@ -8,7 +8,6 @@ $myfile = fopen($dir, "w") or die("Unable to create file!");
 
 $responseText = array();
 $i = 0;
-
 $handler = opendir('./account/' . $emailAddress);
 while (($filename = readdir($handler)) !== false) {
   if ($filename != "." && $filename != ".." && $filename != ".DS_Store") {
@@ -24,7 +23,6 @@ while (($filename = readdir($handler)) !== false) {
   }
 }
 echo json_encode($responseText);
-
 
 /*
 echo "<table border='1'><tr><td colspan='6'>File Name</td></tr>";

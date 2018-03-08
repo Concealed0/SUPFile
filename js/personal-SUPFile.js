@@ -25,7 +25,7 @@ window.onbeforeunload = function () {
   var b = n > document.documentElement.scrollWidth - 20;
   if (b && window.event.clientY < 0 || window.event.altKey) {
     alert("这是一个关闭操作而非刷新");
-    window.event.returnValue = ""; //此处放你想要操作的代码 
+    window.event.returnValue = "";
     //  Close page and logout
     window.event.returnValue = "";
     var xmlhttp;
@@ -53,7 +53,7 @@ window.onunload = function () {
   var b = n > document.documentElement.scrollWidth - 20;
   if (b && window.event.clientY < 0 || window.event.altKey) {
     alert("这是一个关闭操作而非刷新");
-    window.event.returnValue = ""; //此处放你想要操作的代码 
+    window.event.returnValue = "";
     //  Close page and logout
     window.event.returnValue = "";
     var xmlhttp;
@@ -80,29 +80,23 @@ function addListener(fileList) {
   document.getElementById("createFolderBtn").addEventListener('click', createFolder, false);
   document.getElementById("createFileBtn").addEventListener('click', createFile, false);
   for (var i = 0; i < fileList.length; i++) {
-    //document.getElementById(fileList[i][0] + "-renameBtn").addEventListener('click', rename, false);
     document.getElementById(fileList[i][0] + "-renameBtn").onclick = function (event) {
       event = event ? event : window.event;
       var obj = event.srcElement ? event.srcElement : event.target;
-      //alert(obj.id);
-      var objID = obj.id;
-      var n = objID.lastIndexOf("-");
-      var fileName = objID.substring(0, n);
+      fileName = obj.id.substring(0, obj.id.lastIndexOf("-"));
       rename(fileName);
+    }
+
+    document.getElementById(fileList[i][0] + "-deleteBtn").onclick = function (event) {
+      event = event ? event : window.event;
+      var obj = event.srcElement ? event.srcElement : event.target;
+      fileName = obj.id.substring(0, obj.id.lastIndexOf("-"));
+      deleteOneFile(fileName);
     }
   }
 }
 
-function removeAllListener() {
-  var a = document.getElementByTag('*');
-  for(var i = a.length;i--;)
-  {
-    a[i].onclick = null;
-  }
-}
-
-function rename(fileName) {
-  var newName = prompt("Please input new name: ", "");
+function deleteOneFile(fileName) {
   var xmlhttp;
   if (window.XMLHttpRequest) {
     //  IE7+, Firefox, Chrome, Opera, Safari
@@ -113,20 +107,19 @@ function rename(fileName) {
   }
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      //document.getElementById("frame-file").innerText = xmlhttp.responseText;
-      var fileList = JSON.parse(xmlhttp.responseText);
+      //var fileList = JSON.parse(xmlhttp.responseText);
       //alert(fileList);
-      initTable(fileList);
-      addListener(fileList);
+      showFiles();
+      //addListener(fileList);
     }
   }
-  xmlhttp.open("GET", "rename.php?name="+fileName+"|"+newName, true);
+  xmlhttp.open("GET", "deleteFile.php?name="+fileName, true);
   xmlhttp.send();
 }
 
-/*function renameFile() {
-  var fileName = prompt("Please input new folder name: ","");
-  if (inputName) {
+function rename(fileName) {
+  var newName = prompt("Please input new name: ", "");
+  if (newName) {
     var xmlhttp;
     if (window.XMLHttpRequest) {
       //  IE7+, Firefox, Chrome, Opera, Safari
@@ -137,13 +130,15 @@ function rename(fileName) {
     }
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById("frame-file").innerHTML = xmlhttp.responseText;
+        var fileList = JSON.parse(xmlhttp.responseText);
+        initTable(fileList);
+        //addListener(fileList);
       }
     }
-    xmlhttp.open("GET", "renameFile.php?fileName="+inputName, true);
+    xmlhttp.open("GET", "rename.php?name=" + fileName + "|" + newName, true);
     xmlhttp.send();
   }
-}*/
+}
 
 function createFolder() {
   var inputName = prompt("Please input new folder name: ", "");
@@ -158,9 +153,9 @@ function createFolder() {
     }
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        //document.getElementById("frame-file").innerHTML = xmlhttp.responseText;
         var fileList = JSON.parse(xmlhttp.responseText);
         initTable(fileList);
+        //addListener(fileList);
       }
     }
     xmlhttp.open("GET", "createFolder.php?newFolderName=" + inputName, true);
@@ -181,9 +176,9 @@ function createFile() {
     }
     xmlhttp.onreadystatechange = function () {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        //document.getElementById("frame-file").innerHTML = xmlhttp.responseText;
         var fileList = JSON.parse(xmlhttp.responseText);
         initTable(fileList);
+        //addListener(fileList);
       }
     }
     xmlhttp.open("GET", "createFile.php?newFileName=" + inputName, true);
@@ -202,11 +197,9 @@ function showFiles() {
   }
   xmlhttp.onreadystatechange = function () {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      //document.getElementById("frame-file").innerText = xmlhttp.responseText;
       var fileList = JSON.parse(xmlhttp.responseText);
-      //alert(fileList);
       initTable(fileList);
-      addListener(fileList);
+      //addListener(fileList);
     }
   }
   xmlhttp.open("GET", "getUserFiles.php", true);
@@ -221,4 +214,5 @@ function initTable(fileList) {
   }
   fileListHTML = fileListHTML + "</table>";
   document.getElementById("frame-file").innerHTML = fileListHTML;
+  addListener(fileList);
 }

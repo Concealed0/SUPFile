@@ -18,8 +18,25 @@ window.onload = function () {
     xmlhttp.send();
 
   showFiles();
-  //addListener();
+  addListener();
 };
+
+window.onbeforeunload = function() {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    //  IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    }
+  }
+  xmlhttp.open("GET", "closePageAndLogout.php", true);
+  xmlhttp.send();
+}
 
 function addListener() {
   document.getElementById("createFolderBtn").addEventListener('click', createFolder, false);

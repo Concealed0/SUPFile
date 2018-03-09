@@ -158,6 +158,7 @@ function deleteOneFile(name) {
 }
 
 function downloadOneFile(name) {
+  window.location.href = "download.php?downName=" + name;
   /*var xmlhttp;
   if (window.XMLHttpRequest) {
     //  IE7+, Firefox, Chrome, Opera, Safari
@@ -173,5 +174,4 @@ function downloadOneFile(name) {
   };
   xmlhttp.open("GET", "download.php?downName=" + name, true);
   xmlhttp.send();*/
-  window.location.href = "download.php?downName=" + name;
 }

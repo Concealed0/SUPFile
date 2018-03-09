@@ -30,4 +30,5 @@
 
 
 #### XIE Hui
-#### E-mail: hui.x@outlook.com
+#### E-mail: hui.x@outlook.com && 219633@supinfo.com
+#### Campus: SUPINFO - Hebut Tianjin

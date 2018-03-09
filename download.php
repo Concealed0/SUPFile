@@ -19,7 +19,7 @@ if (!file_exists($file_dir . $file_name)) {
     fclose($file);
     exit();
   } else if (is_dir($file_dir . $file_name)) {
-
+    //  Build .zip and download
   }
 }
 ?>

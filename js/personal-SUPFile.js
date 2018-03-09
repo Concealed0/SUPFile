@@ -1,4 +1,3 @@
-//  Edit title by user's email address when init page
 window.onload = function () {
   var xmlhttp;
   if (window.XMLHttpRequest) {

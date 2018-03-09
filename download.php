@@ -1,8 +1,9 @@
 <?php
 session_start();
-$emailAddress = $_SESSION['emailAddress'];
+$currentFolder = $_SESSION['currentFolder'];
 $file_name = $_GET['downName'];
-$file_dir = "./account/" . $emailAddress . "/";
+$file_dir = $currentFolder . "/";
+
 
 if (!file_exists($file_dir . $file_name)) {
   echo "Can't find file";
@@ -16,7 +17,6 @@ if (!file_exists($file_dir . $file_name)) {
     Header("Content-Disposition: attachment; filename=" . $file_name);
     echo fread($file, filesize($file_dir . $file_name));
     fclose($file);
-
     exit();
   } else if (is_dir($file_dir . $file_name)) {
 

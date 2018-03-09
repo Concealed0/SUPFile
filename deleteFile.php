@@ -1,9 +1,10 @@
 <?php
 session_start();
-$emailAddress = $_SESSION['emailAddress'];
+$currentFolder = $_SESSION['currentFolder'];
 $name = $_GET['name'];
-$dir = "./account/" . $emailAddress . "/" . $name;
-if (is_dir($dir)) {
+$dir = $currentFolder . "/" . $name;
+
+function deldir($dir) {
   $dh = opendir($dir);
   while ($file = readdir($dh)) {
     if($file != "." && $file!="..") {
@@ -16,16 +17,17 @@ if (is_dir($dir)) {
     }
   }
   closedir($dh);
-  if(rmdir($dir)) {
-    echo ("Deleted $file");
+  if (rmdir($dir)) {
+    return true;
   } else {
-    echo ("Error deleting $file");
+    return false;
   }
-} else {
+}
+if (is_dir($dir)) {
+  deldir($dir);
+} else if (is_file($dir)) {
   if (!unlink($dir)) {
-    echo ("Error deleting $file");
-  } else {
-    echo ("Deleted $file");
+    echo "Error deleting";
   }
 }
 ?>

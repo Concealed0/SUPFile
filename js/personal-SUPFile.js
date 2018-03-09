@@ -17,6 +17,10 @@ window.onload = function () {
   xmlhttp.open("GET", "getEmailAddress.php", true);
   xmlhttp.send();
 
+  document.getElementById("createFolderBtn").addEventListener('click', createFolder, false);
+  document.getElementById("createFileBtn").addEventListener('click', createFile, false);
+  document.getElementById("backBtn").addEventListener('click', backFolder, false);
+
   showFiles();
 };
 
@@ -39,20 +43,23 @@ function showFiles() {
 }
 
 function initTable(fileList) {
-  var fileListHTML = "<table border='1'><tr><td colspan='1'>File Name</td><td colspan='1'>File Type</td><td colspan='5' style='text-align:center;'>tools</td></tr>";
+  var fileListHTML = "<table border='1'><tr><td>File Name</td><td>File Type</td><td style='text-align: center;'>tools</td></tr>";
   for (var i = 0; i < fileList.length; i++) {
-    fileListHTML = fileListHTML + "<tr><td>" + fileList[i][0] + "</td><td>" + fileList[i][1] + "</td><td>" + "<button id='" + fileList[i][0] + "-renameBtn'>Rename</button></td><td><button id='" + fileList[i][0] + "-deleteBtn'>Delete</button></td><td><button id='" + fileList[i][0] + "-downloadBtn'>Download</button></td><td><button id='" + fileList[i][0] + "-moveBtn'>Move</button></td><td><button id='" + fileList[i][0] + "-shareBtn'>Share</button></td></tr>";
+    fileListHTML = fileListHTML + "<tr><td>" + fileList[i][0] + "</td><td>" + fileList[i][1] + "</td><td>" + "<button id='" + fileList[i][0] + "-openBtn'>Open</button>"  + "<button id='" + fileList[i][0] + "-renameBtn'>Rename</button><button id='" + fileList[i][0] + "-deleteBtn'>Delete</button><button id='" + fileList[i][0] + "-downloadBtn'>Download</button><button id='" + fileList[i][0] + "-moveBtn'>Move</button><button id='" + fileList[i][0] + "-shareBtn'>Share</button></td></tr>";
   }
   document.getElementById("frame-file").innerHTML = fileListHTML + "</table>";
   addListener(fileList);
 }
 
 function addListener(fileList) {
-  document.getElementById("createFolderBtn").addEventListener('click', createFolder, false);
-
-  document.getElementById("createFileBtn").addEventListener('click', createFile, false);
-
   for (var i = 0; i < fileList.length; i++) {
+    document.getElementById(fileList[i][0] + "-openBtn").onclick = function (event) {
+      event = event ? event : window.event;
+      var obj = event.srcElement ? event.srcElement : event.target;
+      var fileName = obj.id.substring(0, obj.id.lastIndexOf("-"));
+      openFolder(fileName);
+    };
+
     document.getElementById(fileList[i][0] + "-renameBtn").onclick = function (event) {
       event = event ? event : window.event;
       var obj = event.srcElement ? event.srcElement : event.target;
@@ -118,6 +125,42 @@ function createFile() {
   }
 }
 
+function backFolder() {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    //  IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      showFiles();
+    }
+  };
+  xmlhttp.open("GET", "backFolder.php", true);
+  xmlhttp.send();
+}
+
+function openFolder(name) {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    //  IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+      showFiles();
+    }
+  };
+  xmlhttp.open("GET", "openFolder.php?name=" + name, true);
+  xmlhttp.send();
+}
+
 function rename(oldName) {
   var newName = prompt("Please input new name: ", "");
   if (newName) {
@@ -159,19 +202,4 @@ function deleteOneFile(name) {
 
 function downloadOneFile(name) {
   window.location.href = "download.php?downName=" + name;
-  /*var xmlhttp;
-  if (window.XMLHttpRequest) {
-    //  IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    // IE6, IE5
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xmlhttp.onreadystatechange = function () {
-    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-      showFiles();
-    }
-  };
-  xmlhttp.open("GET", "download.php?downName=" + name, true);
-  xmlhttp.send();*/
 }

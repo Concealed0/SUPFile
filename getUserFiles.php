@@ -1,17 +1,17 @@
 <?php
 session_start();
-$emailAddress = $_SESSION['emailAddress'];
+$currentFolder = $_SESSION['currentFolder'];
 
 $responseText = array();
 $i = 0;
 
-$handler = opendir('./account/' . $emailAddress);
+$handler = opendir($currentFolder);
 while (($filename = readdir($handler)) !== false) {
   if ($filename != "." && $filename != ".." && $filename != ".DS_Store") {
     $responseText[$i][0] = $filename;
     //  Check file type
-    if (is_file('./account/' . $emailAddress . '/' . $filename)) {
-      $responseText[$i][1] = pathinfo('./account/' . $emailAddress . '/' . $filename , PATHINFO_EXTENSION);
+    if (is_file($currentFolder . '/' . $filename)) {
+      $responseText[$i][1] = pathinfo($currentFolder . '/' . $filename , PATHINFO_EXTENSION);
     } else {
       $responseText[$i][1] = "folder";
     }

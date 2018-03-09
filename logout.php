@@ -17,5 +17,6 @@
   $conn->query("UPDATE user_list SET log_status=0 WHERE email_address='$emailAddress'");*/
 
   $_SESSION['emailAddress'] = null;
+  $_SESSION['currentFolder'] = null;
   echo "<script>window.location.href='login.html'</script>";
 ?>

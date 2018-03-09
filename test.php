@@ -1,33 +1,24 @@
 <?php
 session_start();
 $emailAddress = $_SESSION['emailAddress'];
-$name = "1.txt";
-
-$file = "./account/" . $emailAddress . "/" . $name;
-if (!unlink($file))
-{
-echo ("Error deleting $file");
-}
-else
-{
-echo ("Deleted $file");
-}
-
-$responseText = array();
-$i = 0;
-$handler = opendir('./account/' . $emailAddress);
-while (($filename = readdir($handler)) !== false) {
-  if ($filename != "." && $filename != ".." && $filename != ".DS_Store") {
-    $responseText[$i][0] = $filename;
-    //  Check file type
-    if (is_file('./account/' . $emailAddress . '/' . $filename)) {
-      //$file = fopen('./account/' . $emailAddress . '/' . $filename ,"r");
-      $responseText[$i][1] = pathinfo('./account/' . $emailAddress . '/' . $filename , PATHINFO_EXTENSION);
-    } else {
-      $responseText[$i][1] = "folder";
-    }
-    $i++;
-  }
-}
-echo json_encode($responseText);
+$file_name = "1.txt";      //下载文件名    
+$file_dir = "./account/219650@supinfo.com/";        //下载文件存放目录    
+//检查文件是否存在    
+if (! file_exists ( $file_dir . $file_name )) {    
+    echo "文件找不到";    
+    exit ();    
+} else {    
+    //打开文件    
+    $file = fopen ( $file_dir . $file_name, "r" );    
+    //输入文件标签     
+    Header ( "Content-type: application/octet-stream" );    
+    Header ( "Accept-Ranges: bytes" );    
+    Header ( "Accept-Length: " . filesize ( $file_dir . $file_name ) );    
+    Header ( "Content-Disposition: attachment; filename=" . $file_name );    
+    //输出文件内容     
+    //读取文件内容并直接输出到浏览器    
+    echo fread ( $file, filesize ( $file_dir . $file_name ) );    
+    fclose ( $file );    
+    exit ();    
+}    
 ?>

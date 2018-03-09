@@ -20,6 +20,7 @@ window.onload = function () {
   showFiles();
 };
 
+/*
 window.onbeforeunload = function () {
   var n = window.event.screenX - window.screenLeft;
   var b = n > document.documentElement.scrollWidth - 20;
@@ -74,7 +75,7 @@ window.onunload = function () {
   } else {
     alert("这是一个刷新操作而非关闭");
   }
-}
+}*/
 
 function addListener(fileList) {
   document.getElementById("createFolderBtn").addEventListener('click', createFolder, false);
@@ -93,7 +94,32 @@ function addListener(fileList) {
       fileName = obj.id.substring(0, obj.id.lastIndexOf("-"));
       deleteOneFile(fileName);
     }
+
+    document.getElementById(fileList[i][0] + "-downloadBtn").onclick = function (event) {
+      event = event ? event : window.event;
+      var obj = event.srcElement ? event.srcElement : event.target;
+      fileName = obj.id.substring(0, obj.id.lastIndexOf("-"));
+      downloadOneFile(fileName);
+    }
   }
+}
+
+function downloadOneFile(name) {
+  var xmlhttp;
+  if (window.XMLHttpRequest) {
+    //  IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else {
+    // IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange = function () {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      showFiles();
+    }
+  }
+  xmlhttp.open("GET", "downloadFile.php?downloadName=" + name, true);
+  xmlhttp.send();
 }
 
 function deleteOneFile(fileName) {
@@ -113,7 +139,7 @@ function deleteOneFile(fileName) {
       //addListener(fileList);
     }
   }
-  xmlhttp.open("GET", "deleteFile.php?name="+fileName, true);
+  xmlhttp.open("GET", "deleteFile.php?name=" + fileName, true);
   xmlhttp.send();
 }
 

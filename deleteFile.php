@@ -2,7 +2,6 @@
 session_start();
 $emailAddress = $_SESSION['emailAddress'];
 $name = $_GET['name'];
-echo $name."            ";
 $dir = "./account/" . $emailAddress . "/" . $name;
 if (is_dir($dir)) {
   $dh = opendir($dir);
@@ -29,7 +28,7 @@ if (is_dir($dir)) {
     echo ("Deleted $file");
   }
 }
-
+/*
 $responseText = array();
 $i = 0;
 $handler = opendir('./account/' . $emailAddress);
@@ -46,5 +45,5 @@ while (($filename = readdir($handler)) !== false) {
     $i++;
   }
 }
-echo json_encode($responseText);
+echo json_encode($responseText);*/
 ?>

@@ -45,8 +45,7 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 if ($result->num_rows == 1 /*&& $row["log_status"] == 0*/) {
   $_SESSION['emailAddress'] = $emailAddressInput;
-  $conn->query("UPDATE user_list SET log_status=1 WHERE email_address='$emailAddressInput'");
-  echo "<script>alert('Login Success!');</script>";
+  //$conn->query("UPDATE user_list SET log_status=1 WHERE email_address='$emailAddressInput'");
   echo "<script>window.location.href='personal-SUPFile.html'</script>";
 }/* else if ($row["log_status"] == 1) {
   echo "<script>alert('This account has been logged!');</script>";

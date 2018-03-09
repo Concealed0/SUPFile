@@ -17,9 +17,9 @@ if (is_dir($dir)) {
   }
   closedir($dh);
   if(rmdir($dir)) {
-    return true;
+    echo ("Deleted $file");
   } else {
-    return false;
+    echo ("Error deleting $file");
   }
 } else {
   if (!unlink($dir)) {
@@ -28,22 +28,4 @@ if (is_dir($dir)) {
     echo ("Deleted $file");
   }
 }
-/*
-$responseText = array();
-$i = 0;
-$handler = opendir('./account/' . $emailAddress);
-while (($filename = readdir($handler)) !== false) {
-  if ($filename != "." && $filename != ".." && $filename != ".DS_Store") {
-    $responseText[$i][0] = $filename;
-    //  Check file type
-    if (is_file('./account/' . $emailAddress . '/' . $filename)) {
-      //$file = fopen('./account/' . $emailAddress . '/' . $filename ,"r");
-      $responseText[$i][1] = pathinfo('./account/' . $emailAddress . '/' . $filename , PATHINFO_EXTENSION);
-    } else {
-      $responseText[$i][1] = "folder";
-    }
-    $i++;
-  }
-}
-echo json_encode($responseText);*/
 ?>

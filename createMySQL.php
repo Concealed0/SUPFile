@@ -42,7 +42,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `user_list`(
 if ($conn->query($sql) === TRUE) {
   echo "Table MyGuests created successfully";
 } else {
-  echo "创建数据表错误: " . $conn->error;
+  echo "Create table error: " . $conn->error;
 }
 
 $conn->close();

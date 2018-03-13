@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {//  Email has been registered
       echo "<script>window.location.href='register.html'</script>";
     }
     echo "<script>alert('Register success!');</script>";
-    echo "<script>window.location.href='login.html'</script>";
+    echo "<script>window.location.href='index.html'</script>";
   } else {
     $msg =  "Error: " . $sql . "<br>" . $conn->error;
     echo "<script>alert($msg);</script>";

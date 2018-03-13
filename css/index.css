@@ -1,0 +1,27 @@
+body {
+  margin-top: 50px;
+}
+
+.ad {
+  position: absolute;
+  height: 480px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.email-login {
+  position: absolute;
+  margin-top: 200px;
+  margin-left: 70%;
+  z-index: 999;
+  background-color: white;
+  width: 320px;
+}
+
+.copyright {
+  width: 100%;
+  background: #3b8cff;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+}

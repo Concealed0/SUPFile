@@ -18,5 +18,5 @@
 
   $_SESSION['emailAddress'] = null;
   $_SESSION['currentFolder'] = null;
-  echo "<script>window.location.href='login.html'</script>";
+  echo "<script>window.location.href='index.html'</script>";
 ?>

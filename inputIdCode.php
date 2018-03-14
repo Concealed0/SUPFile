@@ -1,10 +1,11 @@
 <?php
-require "functions.php";
-require "vendor/autoload.php";
 session_start();
-$emailAddressInput = $_GET['emailAddress'];
-$passwordInput = $_GET['password'];
-$nameInput = $_GET['name'];
+$idCode = $_SESSION['idCode'];
+$emailAddressInput = $_SESSION['inputEmailAddress'];
+$nameInput = $_SESSION['inputname'];
+$passwordInput = $_SESSION['inputpassword'];
+
+$inputCode = $_GET['inputCode'];
 
 //  MySQL database server name, username, password & dbname
 $db_servername = "localhost";
@@ -21,28 +22,7 @@ if ($conn->connect_error) {
   echo "Success";
 }*/
 
-function sendIdMail($to, $num) {
-  $title = 'Identifying Code';
-  $content = 'Your identifying code: ' . $num;
-  sendMail($to,$title,$content);
-}
-
-//  Email address repeat test
-$sql = "SELECT * FROM user_list WHERE email_address='$emailAddressInput'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {//  Email has been registered
-  echo "<script>alert('This email has been registered!');</script>";
-  echo "<script>window.location.href='register.html'</script>";
-} else {
-  $idCode = rand(100000, 999999);
-  $_SESSION['idCode'] = $idCode;
-  $_SESSION['inputEmailAddress'] = $emailAddressInput;
-  $_SESSION['inputname'] = $nameInput;
-  $_SESSION['inputpassword'] = $passwordInput;
-  sendIdMail($emailAddressInput, $idCode);
-  echo "<script>window.location.href='inputIdCode.html'</script>";
-
-  /* Add account in MySQL
+if ($idCode == $inputCode) {
   $sql = "INSERT INTO user_list (username, password, email_address) VALUES ('$nameInput', '$passwordInput', '$emailAddressInput')";
   if ($conn->query($sql) === TRUE) {
     $dir = iconv("UTF-8", "GBK", "./account/" . $emailAddressInput);
@@ -58,8 +38,9 @@ if ($result->num_rows > 0) {//  Email has been registered
     $msg =  "Error: " . $sql . "<br>" . $conn->error;
     echo "<script>alert($msg);</script>";
     echo "<script>window.location.href='register.html'</script>";
-  }*/
+  }
+} else {
+  echo "<script>alert('Id Code error!');</script>";
+  echo "<script>window.location.href='inputIdCode.html'</script>";
 }
-
-$conn->close();
 ?>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Id Code</title>
+  <script type="text/javascript">
+    window.onload = function () {
+      document.getElementById('back-btn').onclick = function () {
+        window.location.href = 'register.html';
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <form action="inputIdCode.php" method="get">
+    <input type="text" name="inputCode">
+    <input type="submit" value="Register">
+  </form>
+  <button id="back-btn">Back</button>
+</body>
+
+</html>

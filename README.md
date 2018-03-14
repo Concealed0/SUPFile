@@ -5,6 +5,30 @@
 ## Website
 #### supfile.top
 
+## Install PHPMailer
+
+```bash
+cd /home/www/testMail
+curl -sS https://getcomposer.org/installer | php
+
+php composer.phar
+
+vim composer.json
+
+#在composer.json文件中添加以下内容
+{
+    "require": {
+        "phpmailer/phpmailer":"*"
+    }
+}
+
+#保存退出
+
+php composer.phar install
+```
+
+
+
 
 ## Info
 #### SUPFile Inc business model is to sell online storage space across Internet. Two infrastructure must be created. The first infrastructure is a cloud of the web interface to files access. The second is the storage. Each user have 30Go to store files. Some files can be viewed online directly. For example Movies, Pictures and text files.

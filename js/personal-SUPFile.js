@@ -81,7 +81,7 @@ function moveFile(event) {
       frameMoveInitTable(JSON.parse(xmlhttp.responseText));
     }
   };
-  xmlhttp.open("GET", "moveFile-getUserFiles.php?name="+fileName , true);
+  xmlhttp.open("GET", "moveFile-getUserFiles.php?name=" + fileName, true);
   xmlhttp.send();
 }
 
@@ -95,8 +95,8 @@ function frameMoveInitTable(fileList) {
 }
 
 function frameMoveAddListener(fileList) {
-  document.getElementById('move-backBtn').addEventListener('click', frameMoveBackFolder,false);
-  document.getElementById('move-closeBtn').addEventListener('click', frameMoveCloseFolder,false);
+  document.getElementById('move-backBtn').addEventListener('click', frameMoveBackFolder, false);
+  document.getElementById('move-closeBtn').addEventListener('click', frameMoveCloseFolder, false);
   for (var i = 0; i < fileList.length; i++) {
     document.getElementById(fileList[i] + "-moveOpenBtn").addEventListener('click', frameMoveOpenFolder, false);
     document.getElementById(fileList[i] + "-moveMoveBtn").addEventListener('click', frameMoveMoveFile, false);
@@ -122,7 +122,7 @@ function frameMoveMoveFile(event) {
       showFiles();
     }
   };
-  xmlhttp.open("GET", "moveFile-moveFolder.php?name="+name, true);
+  xmlhttp.open("GET", "moveFile-moveFolder.php?name=" + name, true);
   xmlhttp.send();
 }
 

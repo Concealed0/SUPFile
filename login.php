@@ -53,7 +53,7 @@ if ($result->num_rows == 1 /*&& $row["log_status"] == 0*/) {
   echo "<script>window.location.href='login.html'</script>";
 }*/ else {
   echo "<script>alert('Did not find this user or Password error!');</script>";
-  echo "<script>window.location.href='login.html'</script>";
+  echo "<script>window.location.href='index.html'</script>";
 }
 
 $conn->close();

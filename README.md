@@ -50,9 +50,9 @@ php composer.phar install
 #### Web Server: Apache
 #### MySQL 5.6.35
 
-
+## 
 
 
 #### XIE Hui
-#### E-mail: hui.x@outlook.com && 219633@supinfo.com
+#### E-mail: 219633@supinfo.com
 #### Campus: SUPINFO - Hebut Tianjin

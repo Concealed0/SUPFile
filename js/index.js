@@ -27,21 +27,41 @@ function validateForm() {
   return flag;
 }
 
-var pic_arr = ['url("./images/1.jpg")', 'url("./images/2.jpg")', 'url("./images/3.jpg")', 'url("./images/4.jpg")'];
+var img0 = new Image();
+img0.src = "./images/1.jpg";
+img0.load = function () {
+  document.getElementById("index-banner").style.backgroundImage = 'url("./images/1.jpg")';
+};
+var img1 = new Image();
+img1.src = "./images/2.jpg";
+img1.load = function () {
+  document.getElementById("index-banner").style.backgroundImage = 'url("./images/2.jpg")';
+};
+var img2 = new Image();
+img2.src = "./images/3.jpg";
+img2.load = function () {
+  document.getElementById("index-banner").style.backgroundImage = 'url("./images/3.jpg")';
+};
+var img3 = new Image();
+img3.src = "./images/4.jpg";
+img3.load = function () {
+  document.getElementById("index-banner").style.backgroundImage = 'url("./images/4.jpg")';
+};
+
+var pic_arr = [img0, img1, img2, img3];
 var index = 1;
 
 window.onload = function () {
-  document.getElementById("index-banner").style.backgroundImage = 'url("./images/1.jpg")';
+  pic_arr[0].load();
   document.getElementsByClassName("focus-anchor")[0].style.opacity = "1";
-  for (var i = 0; i < 4; i++) {
-    document.getElementsByClassName("focus-anchor")[i].onmouseup = function (event) {
+  for (var i=0; i<4; i++) {
+    document.getElementsByClassName("focus-anchor")[i].onmouseup = function(event) {
       event = event ? event : window.event;
       var obj = event.srcElement ? event.srcElement : event.target;
       index = obj.id;
-      console.log(index);
-      document.getElementById("index-banner").style.backgroundImage = pic_arr[index];
+      pic_arr[index].load();
       document.getElementsByClassName("focus-anchor")[index].style.opacity = "1";
-      for (var i = 0; i < 4; i++) {
+      for (var i=0; i<4; i++) {
         if (i != index) {
           document.getElementsByClassName("focus-anchor")[i].style.opacity = ".5";
         }
@@ -49,9 +69,9 @@ window.onload = function () {
     };
   }
   setInterval(function () {
-    document.getElementById("index-banner").style.backgroundImage = pic_arr[index];
+    pic_arr[index].load();
     document.getElementsByClassName("focus-anchor")[index].style.opacity = "1";
-    for (var i = 0; i < 4; i++) {
+    for (var i=0; i<4; i++) {
       if (i != index) {
         document.getElementsByClassName("focus-anchor")[i].style.opacity = ".5";
       }

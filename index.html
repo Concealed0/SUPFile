@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link href="css/index.css" rel="stylesheet" type="text/css"/>
+  <link href="css/index.css" rel="stylesheet" type="text/css" />
   <script src="js/myfocus-2.0.1.min.js" type="text/javascript"></script>
   <script src="js/mf-pattern/mF_fancy.js" type="text/javascript"></script>
-  <link href="js/mf-pattern/mF_fancy.css" rel="stylesheet" type="text/css"/>
+  <link href="js/mf-pattern/mF_fancy.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript">
     myFocus.set({
-      id:'picBox'
+      id: 'picBox'
     });
+
     function validateForm() {
       var flag = true;
 
@@ -44,61 +46,77 @@
     }
   </script>
 </head>
+
 <body>
-<div class="ad" id="picBox">
-  <div class="loading">
-    <img src="images/loading.gif" alt="pictures loading"/>
+  <div class="ad" id="picBox">
+    <div class="loading">
+      <img src="images/loading.gif" alt="pictures loading" />
+    </div>
+    <div class="pic">
+      <ul>
+        <li>
+          <img src="images/1.jpg" />
+        </li>
+        <li>
+          <img src="images/2.jpg" />
+        </li>
+        <li>
+          <img src="images/3.jpg" />
+        </li>
+        <li>
+          <img src="images/4.jpg" />
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="pic">
-    <ul>
-      <li><img src="images/2.jpg"/></li>
-      <li><img src="images/3.jpg"/></li>
-      <li><img src="images/4.jpg"/></li>
-      <li><img src="images/5.jpg"/></li>
-    </ul>
+  <div class="email-login">
+    <form action="login.php" method="post" name="login-form" onsubmit="return validateForm()">
+      <table class="input-panel">
+        <tr>
+          <td>
+            <p class="login-logo">SUPFile - Email Login</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="emailAddress-panel">
+            <input placeholder="Email Address" class="emailAddress-input" name="emailAddress" type="text">
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <div style="height: 32px;" class="warning-panel">
+              <span id="email-warning" style="display: none; color: red; font-size: 12px; float: left;">please input an email</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="password-panel">
+            <input placeholder="Password" class="password-input" name="password" type="password">
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <div style="height: 32px;" class="warning-panel">
+              <span id="pwd-warning" style="display: none; color: red; font-size: 12px; float: left;">can't be empty</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" class="login-btn" value="Login">
+            <a class="register-btn" href="register.html">Register</a>
+          </td>
+        </tr>
+      </table>
+    </form>
   </div>
-</div>
-<div class="email-login">
-  <form action="login.php" method="post" name="login-form" onsubmit="return validateForm()">
-    <table class="input-panel">
-      <tr>
-        <td>
-          <p class="login-logo">SUPFile - Email Login</p>
-        </td>
-      </tr>
-      <tr>
-        <td class="emailAddress-panel">
-          <input placeholder="Email Address" class="emailAddress-input" name="emailAddress" type="text">
-        </td>
-        <td>
-          <div style="height: 32px;" class="warning-panel">
-            <span id="email-warning" style="display: none; color: red; font-size: 12px; float: left;">please input an email</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="password-panel">
-          <input placeholder="Password" class="password-input" name="password" type="password">
-        </td>
-        <td>
-          <div style="height: 32px;" class="warning-panel">
-            <span id="pwd-warning" style="display: none; color: red; font-size: 12px; float: left;">can't be empty</span>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="submit" class="login-btn" value="Login">
-          <a class="register-btn" href="register.html">Register</a>
-        </td>
-      </tr>
-    </table>
-  </form>
-</div>
-<div class="copyright">
+  <div class="copyright">
     <span style="font-size: 16px; color: #fff;">
       Copyright © 2018 SUPFile
     </span>
-</div>
+  </div>
 </body>
+
 </html>

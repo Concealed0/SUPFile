@@ -4,18 +4,19 @@ body {
 
 .ad {
   position: absolute;
-  height: 480px;
+  height: 550px;
   width: 100%;
   overflow: hidden;
+  margin-top: -50px;
+  margin-left: -8px;
 }
 
 .email-login {
   position: absolute;
-  margin-top: 200px;
-  margin-left: 70%;
+  margin-top: 140px;
+  margin-left: 75%;
   z-index: 999;
   background-color: white;
-  width: 320px;
 }
 
 .copyright {

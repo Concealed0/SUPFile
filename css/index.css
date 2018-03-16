@@ -1,28 +1,44 @@
-body {
-  margin-top: 50px;
-}
-
-.ad {
+.index-banner {
+  z-index: 0;
   position: absolute;
-  height: 550px;
+  left: 0;
+  top: 0;
+  background-size: cover;
   width: 100%;
-  overflow: hidden;
-  margin-top: -50px;
-  margin-left: -8px;
+  height: 70%;
 }
 
-.email-login {
-  position: absolute;
-  margin-top: 140px;
-  margin-left: 75%;
+.login-main {
   z-index: 999;
-  background-color: white;
+  position: absolute;
+  left: 75%;
+  top: 20%;
+  background-color: #fff;
 }
 
-.copyright {
-  width: 100%;
-  background: #3b8cff;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
+.focus-content-container {
+  z-index: 999;
+  bottom: 35%;
+  position: absolute;
+  left: 50%;
+  margin-left: -52px;
 }
+
+.focus-content-item {
+  margin: 0;
+  width: auto;
+  list-style: none;
+  float: left;
+  padding: 0 8px;
+}
+
+.focus-anchor {
+  height: 8px;
+  display: block;
+  width: 8px;
+  border: 1px solid #fff;
+  background: #fff;
+  border-radius: 5px;
+  opacity: .5;
+}
+

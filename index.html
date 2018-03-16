@@ -1,75 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link href="css/index.css" rel="stylesheet" type="text/css" />
-  <script src="js/myfocus-2.0.1.min.js" type="text/javascript"></script>
-  <script src="js/mf-pattern/mF_fancy.js" type="text/javascript"></script>
-  <link href="js/mf-pattern/mF_fancy.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript">
-    myFocus.set({
-      id: 'picBox'
-    });
-
-    function validateForm() {
-      var flag = true;
-
-      var email_address = document.forms["login-form"]["emailAddress"].value;
-      var email_warn = document.getElementById("email-warning");
-      var atpos = email_address.indexOf("@");
-      var dotpos = email_address.lastIndexOf(".");
-      if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email_address.length) {
-        //alert("Please input an email address!");
-        //email_warn.innerText = "This isn't an email";
-        email_warn.style.display = "block";
-        //return false;
-        flag = false;
-      } else {
-        email_warn.style.display = "none";
-      }
-
-      var password = document.forms["login-form"]["password"].value;
-      var pwd_warn = document.getElementById("pwd-warning");
-      if (password == null || password == "") {
-        //alert("Please input password!");
-        //pwd_warn.innerText = "can't be empty";
-        pwd_warn.style.display = "block";
-        //return false;
-        flag = false;
-      } else {
-        pwd_warn.style.display = "none";
-      }
-
-      return flag;
-    }
-  </script>
+  <script src="./js/index.js" type="text/javascript"></script>
+  <link href="./css/index.css" rel="stylesheet" type="text/css" />
 </head>
-
 <body>
-  <div class="ad" id="picBox">
-    <div class="loading">
-      <img src="images/loading.gif" alt="pictures loading" />
-    </div>
-    <div class="pic">
-      <ul>
-        <li>
-          <img src="images/1.jpg" />
-        </li>
-        <li>
-          <img src="images/2.jpg" />
-        </li>
-        <li>
-          <img src="images/3.jpg" />
-        </li>
-        <li>
-          <img src="images/4.jpg" />
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="email-login">
+<div id="login-container">
+  <div class="index-banner" id="index-banner"></div>
+  <div class="login-main">
     <form action="login.php" method="post" name="login-form" onsubmit="return validateForm()">
       <table class="input-panel">
         <tr>
@@ -81,7 +21,6 @@
           <td class="emailAddress-panel">
             <input placeholder="Email Address" class="emailAddress-input" name="emailAddress" type="text">
           </td>
-
         </tr>
         <tr>
           <td>
@@ -94,7 +33,6 @@
           <td class="password-panel">
             <input placeholder="Password" class="password-input" name="password" type="password">
           </td>
-
         </tr>
         <tr>
           <td>
@@ -112,11 +50,22 @@
       </table>
     </form>
   </div>
-  <div class="copyright">
-    <span style="font-size: 16px; color: #fff;">
-      Copyright © 2018 SUPFile
-    </span>
+  <div class="focus-content-container">
+    <ul class="focus-content">
+      <li class="focus-content-item">
+        <a class="focus-anchor" id="0"></a>
+      </li>
+      <li class="focus-content-item">
+        <a class="focus-anchor" id="1"></a>
+      </li>
+      <li class="focus-content-item">
+        <a class="focus-anchor" id="2"></a>
+      </li>
+      <li class="focus-content-item">
+        <a class="focus-anchor" id="3"></a>
+      </li>
+    </ul>
   </div>
+</div>
 </body>
-
 </html>

@@ -1,3 +1,11 @@
+#login-container {
+  height: 550px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+
 .index-banner {
   z-index: 0;
   position: absolute;
@@ -12,13 +20,13 @@
   z-index: 999;
   position: absolute;
   left: 75%;
-  top: 20%;
+  bottom: 35%;
   background-color: #fff;
 }
 
 .focus-content-container {
   z-index: 999;
-  bottom: 35%;
+  bottom: 20px;
   position: absolute;
   left: 50%;
   margin-left: -52px;

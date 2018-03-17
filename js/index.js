@@ -1,6 +1,6 @@
 function validateForm() {
   var flag = true;
-  var email_address = document.forms["login-form"]["emailAddress"].value;
+  var email_address = document.forms["login-form"].emailAddress.value;
   var email_warn = document.getElementById("email-warning");
   var at_pos = email_address.indexOf("@");
   var dot_pos = email_address.lastIndexOf(".");
@@ -13,7 +13,7 @@ function validateForm() {
   } else {
     email_warn.style.display = "none";
   }
-  var password = document.forms["login-form"]["password"].value;
+  var password = document.forms["login-form"].password.value;
   var pwd_warn = document.getElementById("pwd-warning");
   if (password == null || password === "") {
     //alert("Please input password!");

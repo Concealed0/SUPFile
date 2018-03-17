@@ -11,46 +11,54 @@
 <body>
   <div id="login-container">
     <div class="index-banner" id="index-banner"></div>
+    <div class="header-container">
+      <div class="supfile-logo">
+        <a id="supfile-logo-a" href="./index.html">SUPFile - Email Login</a>
+      </div>
+      <span class="author-container">
+        <a id="author-blog" href="http://xiehui.site">by XIE Hui</a>
+      </span>
+    </div>
     <div class="login-main">
       <form action="login.php" method="post" name="login-form" onsubmit="return validateForm()">
-        <table class="input-panel" style="text-align: center; margin: 0 auto;">
+        <table class="input-panel">
           <tr>
             <td>
-              <p class="login-logo" style="font-size: 20px; color: #333;">Email Login</p>
+              <p class="login-logo">Email Login</p>
             </td>
           </tr>
           <tr>
-            <td class="emailAddress-panel" style="border: 1px solid #e7e7e7; border-radius: 4px;">
-              <input placeholder="Email Address" style="font-size: 16px; height: 30px; width: 90%; border: 0;" class="emailAddress-input" name="emailAddress" type="text">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="height: 18px;" class="warning-panel">
-                <span id="email-warning" style="display: none; color: red; font-size: 12px; margin-left: 10px;">please input an email</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="password-panel" style="border: 1px solid #e7e7e7; border-radius: 4px;">
-              <input placeholder="Password" style="font-size: 16px; height: 30px; width: 90%; border: 0;" class="password-input" name="password" type="password">
+            <td class="emailAddress-panel">
+              <input placeholder="Email Address" class="emailAddress-input" name="emailAddress" type="text">
             </td>
           </tr>
           <tr>
             <td>
               <div style="height: 18px;" class="warning-panel">
-                <span id="pwd-warning" style="display: none; color: red; font-size: 12px; margin-left: 10px;">can't be empty</span>
+                <span id="email-warning">please input an email</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="password-panel">
+              <input placeholder="Password" class="password-input" name="password" type="password">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div style="height: 18px;" class="warning-panel">
+                <span id="pwd-warning">can't be empty</span>
               </div>
             </td>
           </tr>
           <tr>
             <td>
-              <input type="submit" class="login-btn" style="font-size: 20px; color: #fff; border: 0; font-weight: 100; height: 34px; width: 100%; background-color: #3582f8;" value="Login">
+              <input type="submit" class="login-btn" value="Login">
             </td>
           </tr>
           <tr>
             <td>
-              <a class="register-btn" style="margin-right: -110px; transition-property: initial;transition-duration: 0.3s;transition-timing-function: initial;transition-delay: initial; font-size: 14px; text-decoration: none;" href="register.html">Register</a>
+              <a class="register-btn" href="register.html">Register</a>
             </td>
           </tr>
         </table>

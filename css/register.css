@@ -33,8 +33,21 @@ body {
 }
 
 .register-btn {
-  margin-top: 20px;
-  margin-left: 200px;
+  margin-left: 40px;
   width: 70px;
   font-size: 16px;
+}
+
+.back-btn {
+  font-size: 14px;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+span {
+  display: none;
+  color: red;
+  font-size: 12px;
+  float: left;
+  margin-top: 5px;
 }

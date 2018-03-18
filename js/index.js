@@ -32,57 +32,48 @@ window.onload = function () {
     document.getElementById("login-container").style.height = "720px";
     document.getElementById("index-banner").style.height = "720px";
   }
-  var index_banner = document.getElementById("index-banner");
-  var img0 = new Image();
-  img0.src = "./images/1.jpg";
-  img0.load = function () {
-    index_banner.style.backgroundImage = 'url("./images/1.jpg")';
-  };
-  var img1 = new Image();
-  img1.src = "./images/2.jpg";
-  img1.load = function () {
-    index_banner.style.backgroundImage = 'url("./images/2.jpg")';
-  };
-  var img2 = new Image();
-  img2.src = "./images/3.jpg";
-  img2.load = function () {
-    index_banner.style.backgroundImage = 'url("./images/3.jpg")';
-  };
-  var img3 = new Image();
-  img3.src = "./images/4.jpg";
-  img3.load = function () {
-    index_banner.style.backgroundImage = 'url("./images/4.jpg")';
-  };
-  var pic_arr = [img0, img1, img2, img3];
-  var index = 0;
+  var div = document.getElementById("index-banner");
   var dots = document.getElementsByClassName("focus-anchor");
+  var url = './images/';
+  var arr = [];
+  var index = 0;
   var timer = null;
-  dots[0].style.opacity = 1;
 
   for (var i = 0; i < 4; i++) {
     dots[i].addEventListener('mouseup', mouse_up, false);
   }
 
-  pic_arr[index].load();
-  index_banner.style.opacity = 1;
+  arr[index] = new Image();
+  arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
+  arr[index].load = function () {
+    div.style.backgroundImage = 'url(' + this.src + ')';
+  };
   dots[index].style.opacity = 1;
-  index++;
+  arr[index].load();
+  div.style.opacity = 1;
 
   timer = setInterval(function () {
-    if (index >= pic_arr.length) {
+    index++;
+    if (index >= 4) {
       index = 0;
     }
-    index_banner.style.opacity = 0.001;
+    if (arr[index] == null) {
+      arr[index] = new Image();
+      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
+      arr[index].load = function () {
+        div.style.backgroundImage = 'url(' + this.src + ')';
+      };
+    }
+    div.style.opacity = 0.001;
     setTimeout(function () {
-      pic_arr[index].load();
-      index_banner.style.opacity = 1;
+      arr[index].load();
+      div.style.opacity = 1;
       dots[index].style.opacity = 1;
       if (index == 0) {
         dots[3].style.opacity = 0.5;
       } else {
         dots[index - 1].style.opacity = 0.5;
       }
-      index++;
     }, 1000);
   }, 5000);
 
@@ -91,31 +82,47 @@ window.onload = function () {
     var obj = event.srcElement ? event.srcElement : event.target;
     index = obj.id;
 
+    clearTimeout();
     clearInterval(timer);
-    pic_arr[index].load();
-    index_banner.style.opacity = 1;
-    dots[index].style.opacity = 1;
+    if (arr[index] == null) {
+      arr[index] = new Image();
+      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
+      arr[index].load = function () {
+        div.style.backgroundImage = 'url(' + this.src + ')';
+      };
+    }
+    arr[index].load();
+    div.style.opacity = 1;
     for (var i = 0; i < 4; i++) {
       if (i != index) {
         dots[i].style.opacity = 0.5;
+      } else {
+        dots[i].style.opacity = 1;
       }
     }
-    index++;
+
     timer = setInterval(function () {
-      if (index >= pic_arr.length) {
+      index++;
+      if (index >= 4) {
         index = 0;
       }
-      index_banner.style.opacity = 0.001;
+      if (arr[index] == null) {
+        arr[index] = new Image();
+        arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
+        arr[index].load = function () {
+          div.style.backgroundImage = 'url(' + this.src + ')';
+        };
+      }
+      div.style.opacity = 0.001;
       setTimeout(function () {
-        pic_arr[index].load();
-        index_banner.style.opacity = 1;
+        arr[index].load();
+        div.style.opacity = 1;
         dots[index].style.opacity = 1;
         if (index == 0) {
           dots[3].style.opacity = 0.5;
         } else {
           dots[index - 1].style.opacity = 0.5;
         }
-        index++;
       }, 1000);
     }, 5000);
   }

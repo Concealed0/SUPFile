@@ -44,7 +44,7 @@ window.onload = function () {
   }
 
   arr[index] = new Image();
-  arr[index].src = './images/' + (index + 1) + '.jpg';
+  arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
   arr[index].load = function () {
     div.style.backgroundImage = 'url(' + this.src + ')';
   };
@@ -108,7 +108,7 @@ window.onload = function () {
       }
       if (arr[index] == null) {
         arr[index] = new Image();
-        arr[index].src = './images/' + (index + 1) + '.jpg';
+        arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
         arr[index].load = function () {
           div.style.backgroundImage = 'url(' + this.src + ')';
         };

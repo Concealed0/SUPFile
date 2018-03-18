@@ -41,22 +41,33 @@ window.onload = function () {
 
   for (var i = 0; i < 4; i++) {
     dots[i].addEventListener('mouseup', mouse_up, false);
-    arr.push('url(' + url + (i + 1) + '.jpg)');
   }
 
-  dots[0].style.opacity = 1;
-  div.style.backgroundImage = arr[index];
+  arr.push(new Image());
+  arr[index].src = './images/' + (index + 1) + '.jpg';
+  arr[index].load = function () {
+    div.style.backgroundImage = 'url(' + this.src + ')';
+  };
+  dots[index].style.opacity = 1;
+  arr[index].load();
   div.style.opacity = 1;
   dots[index].style.opacity = 1;
-  index++;
 
   timer = setInterval(function () {
-    if (index >= arr.length) {
+    index++;
+    if (index >= 4) {
       index = 0;
+    }
+    if (arr[index] == null) {
+      arr.push(new Image());
+      arr[index].src = './images/' + (index + 1) + '.jpg';
+      arr[index].load = function () {
+        div.style.backgroundImage = 'url(' + this.src + ')';
+      };
     }
     div.style.opacity = 0.001;
     setTimeout(function () {
-      div.style.backgroundImage = arr[index];
+      arr[index].load();
       div.style.opacity = 1;
       dots[index].style.opacity = 1;
       if (index == 0) {
@@ -64,7 +75,6 @@ window.onload = function () {
       } else {
         dots[index - 1].style.opacity = 0.5;
       }
-      index++;
     }, 1000);
   }, 5000);
 
@@ -73,8 +83,16 @@ window.onload = function () {
     var obj = event.srcElement ? event.srcElement : event.target;
     index = obj.id;
 
+    clearTimeout();
     clearInterval(timer);
-    div.style.backgroundImage = arr[index];
+    if (arr[index] == null) {
+      arr.push(new Image());
+      arr[index].src = './images/' + (index + 1) + '.jpg';
+      arr[index].load = function () {
+        div.style.backgroundImage = 'url(' + this.src + ')';
+      };
+    }
+    arr[index].load();
     div.style.opacity = 1;
     dots[index].style.opacity = 1;
     for (var i = 0; i < 4; i++) {
@@ -82,14 +100,22 @@ window.onload = function () {
         dots[i].style.opacity = 0.5;
       }
     }
-    index++;
+
     timer = setInterval(function () {
-      if (index >= arr.length) {
+      index++;
+      if (index >= 4) {
         index = 0;
+      }
+      if (arr[index] == null) {
+        arr.push(new Image());
+        arr[index].src = './images/' + (index + 1) + '.jpg';
+        arr[index].load = function () {
+          div.style.backgroundImage = 'url(' + this.src + ')';
+        };
       }
       div.style.opacity = 0.001;
       setTimeout(function () {
-        div.style.backgroundImage = arr[index];
+        arr[index].load();
         div.style.opacity = 1;
         dots[index].style.opacity = 1;
         if (index == 0) {
@@ -97,7 +123,6 @@ window.onload = function () {
         } else {
           dots[index - 1].style.opacity = 0.5;
         }
-        index++;
       }, 1000);
     }, 5000);
   }

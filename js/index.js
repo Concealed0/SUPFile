@@ -43,7 +43,7 @@ window.onload = function () {
     dots[i].addEventListener('mouseup', mouse_up, false);
   }
 
-  arr.push(new Image());
+  arr[index] = new Image();
   arr[index].src = './images/' + (index + 1) + '.jpg';
   arr[index].load = function () {
     div.style.backgroundImage = 'url(' + this.src + ')';
@@ -51,7 +51,6 @@ window.onload = function () {
   dots[index].style.opacity = 1;
   arr[index].load();
   div.style.opacity = 1;
-  dots[index].style.opacity = 1;
 
   timer = setInterval(function () {
     index++;
@@ -59,8 +58,8 @@ window.onload = function () {
       index = 0;
     }
     if (arr[index] == null) {
-      arr.push(new Image());
-      arr[index].src = './images/' + (index + 1) + '.jpg';
+      arr[index] = new Image();
+      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
       arr[index].load = function () {
         div.style.backgroundImage = 'url(' + this.src + ')';
       };
@@ -86,18 +85,19 @@ window.onload = function () {
     clearTimeout();
     clearInterval(timer);
     if (arr[index] == null) {
-      arr.push(new Image());
-      arr[index].src = './images/' + (index + 1) + '.jpg';
+      arr[index] = new Image();
+      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
       arr[index].load = function () {
         div.style.backgroundImage = 'url(' + this.src + ')';
       };
     }
     arr[index].load();
     div.style.opacity = 1;
-    dots[index].style.opacity = 1;
     for (var i = 0; i < 4; i++) {
       if (i != index) {
         dots[i].style.opacity = 0.5;
+      } else {
+        dots[i].style.opacity = 1;
       }
     }
 
@@ -107,7 +107,7 @@ window.onload = function () {
         index = 0;
       }
       if (arr[index] == null) {
-        arr.push(new Image());
+        arr[index] = new Image();
         arr[index].src = './images/' + (index + 1) + '.jpg';
         arr[index].load = function () {
           div.style.backgroundImage = 'url(' + this.src + ')';

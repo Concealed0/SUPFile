@@ -54,38 +54,71 @@ window.onload = function () {
     index_banner.style.backgroundImage = 'url("./images/4.jpg")';
   };
   var pic_arr = [img0, img1, img2, img3];
-  var index = 1;
+  var index = 0;
   var dots = document.getElementsByClassName("focus-anchor");
-  pic_arr[0].load();
-  dots[0].style.opacity = "1";
+  var timer = null;
+  dots[0].style.opacity = 1;
+
   for (var i = 0; i < 4; i++) {
-    dots[i].onmouseup = function (event) {
-      event = event ? event : window.event;
-      var obj = event.srcElement ? event.srcElement : event.target;
-      index = obj.id;
-      pic_arr[index].load();
-      dots[index].style.opacity = "1";
-      for (var i = 0; i < 4; i++) {
-        if (i != index) {
-          dots[i].style.opacity = ".5";
-        }
-      }
-    };
+    dots[i].addEventListener('mouseup', mouse_up, false);
   }
-  setInterval(function () {
-    pic_arr[index].load();
-    dots[index].style.opacity = "1";
-    for (var i = 0; i < 4; i++) {
-      if (i != index) {
-        dots[i].style.opacity = ".5";
-      }
-    }
-    if (index < 3) {
-      index++;
-    } else {
+
+  pic_arr[index].load();
+  index_banner.style.opacity = 1;
+  dots[index].style.opacity = 1;
+  index++;
+
+  timer = setInterval(function () {
+    if (index >= pic_arr.length) {
       index = 0;
     }
-  }, 2000);
+    index_banner.style.opacity = 0.001;
+    setTimeout(function () {
+      pic_arr[index].load();
+      index_banner.style.opacity = 1;
+      dots[index].style.opacity = 1;
+      if (index == 0) {
+        dots[3].style.opacity = 0.5;
+      } else {
+        dots[index - 1].style.opacity = 0.5;
+      }
+      index++;
+    }, 1000);
+  }, 5000);
+
+  function mouse_up(event) {
+    event = event ? event : window.event;
+    var obj = event.srcElement ? event.srcElement : event.target;
+    index = obj.id;
+
+    clearInterval(timer);
+    pic_arr[index].load();
+    index_banner.style.opacity = 1;
+    dots[index].style.opacity = 1;
+    for (var i = 0; i < 4; i++) {
+      if (i != index) {
+        dots[i].style.opacity = 0.5;
+      }
+    }
+    index++;
+    timer = setInterval(function () {
+      if (index >= pic_arr.length) {
+        index = 0;
+      }
+      index_banner.style.opacity = 0.001;
+      setTimeout(function () {
+        pic_arr[index].load();
+        index_banner.style.opacity = 1;
+        dots[index].style.opacity = 1;
+        if (index == 0) {
+          dots[3].style.opacity = 0.5;
+        } else {
+          dots[index - 1].style.opacity = 0.5;
+        }
+        index++;
+      }, 1000);
+    }, 5000);
+  }
 };
 
 window.onresize = function () {

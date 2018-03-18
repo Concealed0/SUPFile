@@ -17,13 +17,11 @@ $conn = new mysqli($db_servername, $db_username,$db_password, $db_dbname);
 if ($conn->connect_error) {
   echo "Failed";
   die("Failed: " . $conn->connect_error);
-}/* else {
-  echo "Success";
-}*/
+}
 
 function sendIdMail($to, $num) {
   $title = 'Identifying Code';
-  $content = 'Your identifying code: ' . $num;
+  $content = 'Your identifying code: ' . $num . ' ! From supfile';
   sendMail($to,$title,$content);
 }
 
@@ -41,25 +39,6 @@ if ($result->num_rows > 0) {//  Email has been registered
   $_SESSION['inputpassword'] = $passwordInput;
   sendIdMail($emailAddressInput, $idCode);
   echo "<script>window.location.href='inputIdCode.html'</script>";
-
-  /* Add account in MySQL
-  $sql = "INSERT INTO user_list (username, password, email_address) VALUES ('$nameInput', '$passwordInput', '$emailAddressInput')";
-  if ($conn->query($sql) === TRUE) {
-    $dir = iconv("UTF-8", "GBK", "./account/" . $emailAddressInput);
-    if (!file_exists($dir)) {
-      mkdir($dir, 0777);
-    } else {
-      echo "<script>alert('mkdir failed!');</script>";
-      echo "<script>window.location.href='register.html'</script>";
-    }
-    echo "<script>alert('Register success!');</script>";
-    echo "<script>window.location.href='index.html'</script>";
-  } else {
-    $msg =  "Error: " . $sql . "<br>" . $conn->error;
-    echo "<script>alert($msg);</script>";
-    echo "<script>window.location.href='register.html'</script>";
-  }*/
 }
-
 $conn->close();
 ?>

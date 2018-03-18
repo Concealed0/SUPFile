@@ -18,9 +18,7 @@ $conn = new mysqli($db_servername, $db_username,$db_password, $db_dbname);
 if ($conn->connect_error) {
   echo "Failed";
   die("Failed: " . $conn->connect_error);
-}/* else {
-  echo "Success";
-}*/
+}
 
 if ($idCode == $inputCode) {
   $sql = "INSERT INTO user_list (username, password, email_address) VALUES ('$nameInput', '$passwordInput', '$emailAddressInput')";
@@ -28,18 +26,22 @@ if ($idCode == $inputCode) {
     $dir = iconv("UTF-8", "GBK", "./account/" . $emailAddressInput);
     if (!file_exists($dir)) {
       mkdir($dir, 0777);
+      session_destroy();
+      echo "<script>alert('Register success!');</script>";
+      echo "<script>window.location.href='index.html'</script>";
     } else {
+      session_destroy();
       echo "<script>alert('mkdir failed!');</script>";
       echo "<script>window.location.href='register.html'</script>";
     }
-    echo "<script>alert('Register success!');</script>";
-    echo "<script>window.location.href='index.html'</script>";
   } else {
     $msg =  "Error: " . $sql . "<br>" . $conn->error;
+    session_destroy();
     echo "<script>alert($msg);</script>";
     echo "<script>window.location.href='register.html'</script>";
   }
 } else {
+  session_destroy();
   echo "<script>alert('Id Code error!');</script>";
   echo "<script>window.location.href='inputIdCode.html'</script>";
 }

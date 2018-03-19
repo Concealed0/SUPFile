@@ -258,6 +258,7 @@ a {
 #forget-btn {
   margin-left: 20px;
   line-height: 74px;
+  cursor: pointer;
 }
 
 #register-btn {

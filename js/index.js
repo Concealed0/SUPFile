@@ -150,6 +150,32 @@ function check_email_and_pwd() {
   };
 }
 
+function click_forgetBtn() {
+  var input_emailAddress = document.forms['login-form'].emailAddress.value;
+  var request;
+  if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest();
+  } else {
+    request = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  request.open("POST", "sendIdCode.php", true);
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  request.send("forgetInputEmailAddress=" + input_emailAddress);
+  request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+      if (request.responseText.charAt(request.responseText.length - 1) == 's') {
+        document.getElementById("error-tips").innerText = "We send your password to your email";
+      } else if (request.responseText == 'f') {
+        document.getElementById("error-tips").innerText = "Email hasn't been registered";
+      } else if (request.responseText.charAt(request.responseText.length - 1) == 'e') {
+        document.getElementById("error-tips").innerText = "Send password error, please try again";
+      } else {
+        alert(request.responseText);
+      }
+    }
+  };
+}
+
 window.onload = function () {
   if (this.document.documentElement.clientWidth >= 1400) {
     document.getElementById("login-container").style.height = "720px";
@@ -157,6 +183,7 @@ window.onload = function () {
     this.document.getElementById('foot').style.marginTop = "750px";
   }
   this.document.getElementById("submit-btn").addEventListener('click', click_submitBtn);
+  this.document.getElementById("forget-btn").addEventListener('click', click_forgetBtn);
   init_imgs();
 };
 

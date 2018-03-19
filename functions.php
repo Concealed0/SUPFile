@@ -12,12 +12,12 @@ function sendMail($to,$title,$content){
   $mail->Port = 465;
   $mail->Hostname = 'supfile.top/SUPFile/';
   $mail->CharSet = 'UTF-8';
-  $mail->FromName = 'SUPFile - Register';
+  $mail->FromName = 'SUPFile';
   $mail->Username ='979499575@qq.com';
   $mail->Password = 'dqibmyogcqoebfba';
   $mail->From = '979499575@qq.com';
   $mail->isHTML(true);
-  $mail->addAddress($to,'Register account');
+  $mail->addAddress($to,'SUPFile Account');
   $mail->Subject = $title;
   $mail->Body = $content;
   return $status = $mail->send();

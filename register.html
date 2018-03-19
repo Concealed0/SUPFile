@@ -9,50 +9,63 @@
 </head>
 
 <body>
-  <div class="register-panel">
-    <p class="register-logo">SUPFile - Register</p>
-    <div class="table-panel">
-      <form action="register.php" method="get" name="register-form" onsubmit="return validateForm()">
-        <table class="register-table">
-          <tr>
-            <td>Name</td>
-            <td class="input">
-              <input type="text" name="name">
-            </td>
-          </tr>
-          <tr>
-            <td>Password</td>
-            <td class="input">
-              <input type="text" name="password">
-            </td>
-          </tr>
-          <tr>
-            <td>Email Address</td>
-            <td class="input">
-              <input type="text" name="emailAddress">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input class="register-btn" type="submit" value="Register">
-            </td>
-            <td>
-              <a class="back-btn" href="index.html">Back</a>
-            </td>
-          </tr>
-        </table>
-      </form>
+  <div id="wrapper>">
+    <div id="head">
+      <div id="head-title">
+        <a id="head-a" href="register.html">SUPFile - Register new account</a>
+      </div>
+      <div id="login-link">
+        <span id="login-span">I have an account, now </span>
+        <a id="login-a" href="index.html">Login</a>
+      </div>
     </div>
-    <div class="warning-panel">
-      <div style="height: 30px;">
-        <span id="name-warning">can't be empty</span>
+    <div id="nav">
+      <div id="nav-2"></div>
+    </div>
+    <div id="content">
+      <div id="content-container">
+        <div id="register-container">
+          <form id="register-form" method="POST" name="register-form" autocomplete="off">
+            <div id="form-header"></div>
+            <div id="emailAddress-input-container">
+              <label>Email Address</label>
+              <input type="text" style="display: none;">
+              <input id="register-form-emailAddress" type="text" name="emailAddress" placeholder="Please input an email address">
+              <span id="emailAddress-error" style="display: none;"></span>
+            </div>
+            <div id="password-input-container">
+              <label>Password</label>
+              <input type="password" style="display: none;">
+              <input id="register-form-password" type="password" name="password" placeholder="Password">
+              <span id="password-error" style="display: none;"></span>
+            </div>
+            <div id="idCode-input-container">
+              <label>Security Code</label>
+              <input type="text" style="display: none;">
+              <input id="register-form-idCode" type="text" name="idCode" placeholder="Security Code">
+              <input id="idCode-get-btn" type="button" value="Get Security Code">
+              <span id="idCode-error" style="display: none;"></span>
+            </div>
+            <div id="submit-btn-container">
+              <input id="submit-btn" type="submit" value="Register">
+            </div>
+          </form>
+        </div>
+        <div id="info-container">
+          <h3>SUPFile</h3>
+          <div id="warning-info-container">
+            <p>Please input an avaliable email address.</p>
+            <p>We will send you a security code by email. (from 979499575@qq.com)</p>
+            <p>Contact me: </p>
+            <p>Blog: <a href="xiehui.site">xiehui.site</a></p>
+            <p>Email: <a href="mailto:219633@supinfo.com">219633@supinfo.com</a></p>
+            <p>GitHub: <a href="https://github.com/xiehui07/SUPFile">xiehui07/SUPFile</a></p>
+          </div>
+        </div>
       </div>
-      <div style="height: 30px;">
-        <span id="pwd-warning">can't be empty</span>
-      </div>
-      <div style="height: 30px;">
-        <span id="email-warning">This isn't an email</span>
-      </div>
+    </div>
+    <div id="foot">
+      <div id="mod-footer">2018 © SUPFile</div>
     </div>
   </div>
 </body>

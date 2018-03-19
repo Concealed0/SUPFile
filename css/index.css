@@ -9,6 +9,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 100;
+  background-color: #eff4f8;
 }
 
 input {
@@ -23,31 +24,8 @@ table {
   margin: 0 auto;
 }
 
-.login-logo {
-  font-size: 20px;
-  color: #333;
-}
-
-.emailAddress-panel,
-.password-panel {
-  border: 1px solid #e7e7e7;
-  border-radius: 4px;
-}
-
-.emailAddress-input,
-.password-input {
-  font-size: 16px;
-  height: 30px;
-  width: 90%;
-  border: 0;
-}
-
-#email-warning,
-#pwd-warning {
-  display: none;
-  color: red;
-  font-size: 12px;
-  margin-left: 10px;
+a {
+  text-decoration: none;
 }
 
 .header-container {
@@ -63,26 +41,6 @@ table {
   margin: 20px 0 0 35px;
   overflow: hidden;
   top: 10px;
-}
-
-.login-btn {
-  font-size: 20px;
-  color: #fff;
-  border: 0;
-  font-weight: 100;
-  height: 34px;
-  width: 100%;
-  background-color: #3582f8;
-}
-
-.register-btn {
-  margin-right: -110px;
-  transition-property: initial;
-  transition-duration: 0.3s;
-  transition-timing-function: initial;
-  transition-delay: initial;
-  font-size: 14px;
-  text-decoration: none;
 }
 
 #supfile-logo-a {
@@ -106,12 +64,12 @@ table {
 }
 
 .login-main {
-  z-index: 999;
-  position: absolute;
-  left: 72%;
-  bottom: 27%;
-  background-color: #fff;
-  width: 200px;
+  height: 100%;
+  border-radius: 3px;
+  width: 352px;
+  vertical-align: middle;
+  margin-top: 10%;
+  margin-left: 66%;
 }
 
 .focus-content-container {
@@ -119,7 +77,7 @@ table {
   bottom: 20px;
   position: absolute;
   left: 50%;
-  margin-left: -52px;
+  margin-left: -94px;
 }
 
 .focus-content-item {
@@ -148,4 +106,165 @@ table {
 #author-blog {
   color: #fff;
   text-decoration: none;
+}
+
+#foot {
+  text-align: center;
+  margin-top: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  color: #b6bac3;
+  font-weight: 400;
+}
+
+#mod-footer {
+  text-align: center;
+}
+
+.a-footer {
+  color: #b6bac3;
+}
+
+.form-container {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 50px;
+  vertical-align: middle;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 50px;
+  -moz-box-shadow: #000 0 0 50px;
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  z-index: 20;
+}
+
+.login-middle {
+  padding: 0;
+  width: 352px;
+  height: 306px;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.login-form {
+  margin: 0;
+  padding: 0 20px;
+}
+
+#form-header {
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: 22px;
+}
+
+#form-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 200;
+}
+
+#error-tips {
+  color: #fc4343;
+  margin-left: 36px;
+  margin-top: -10px;
+  font-size: 13px;
+  height: 16px;
+  display: block;
+}
+
+#emailAddress-container {
+  border: 1px solid #eaeaea;
+  z-index: 21;
+  border-bottom-width: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position: relative;
+  margin-bottom: 0;
+  margin-left: 20px;
+  margin-top: 0;
+  clear: both;
+  height: 41px;
+  width: 310px;
+}
+
+#emailAddress-input {
+  margin-left: 15px;
+  border: none;
+  height: 41px;
+  width: 280px;
+  font-size: 16px;
+}
+
+#password-container {
+  border: 1px solid #eaeaea;
+  z-index: 25;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: relative;
+  margin-top: 0;
+  margin-left: 20px;
+  clear: both;
+  height: 41px;
+  width: 310px;
+}
+
+#password-input {
+  margin-left: 15px;
+  border: none;
+  height: 39px;
+  width: 280px;
+  font-size: 16px;
+}
+
+#submitBtn-container {
+  border: 0;
+  position: relative;
+  margin-top: 36px;
+  clear: both;
+}
+
+#submit-btn {
+  margin-left: 20px;
+  width: 312px;
+  height: 41px;
+  background: #3582f8;
+  border-radius: 4px;
+  transition: .3s;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 22px;
+}
+
+.login-footer {
+  height: 74px;
+  background: #f3f8ff;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+#forget-btn,
+#register-btn {
+  color: #3582f8;
+}
+
+#forget-btn {
+  margin-left: 20px;
+  line-height: 74px;
+}
+
+#register-btn {
+  margin-top: 28px;
+  margin-left: 90px;
+  width: 80px;
+  padding: 6px 10px;
+  border: 1px solid #bad4fd;
+  border-radius: 4px;
 }

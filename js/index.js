@@ -1,31 +1,4 @@
-function validateForm() {
-  var flag = true;
-  var email_address = document.forms["login-form"].emailAddress.value;
-  var email_warn = document.getElementById("email-warning");
-  var at_pos = email_address.indexOf("@");
-  var dot_pos = email_address.lastIndexOf(".");
-  if (at_pos < 1 || dot_pos < at_pos + 2 || dot_pos + 2 >= email_address.length) {
-    email_warn.style.display = "block";
-    flag = false;
-  } else {
-    email_warn.style.display = "none";
-  }
-  var password = document.forms["login-form"].password.value;
-  var pwd_warn = document.getElementById("pwd-warning");
-  if (password == null || password === "") {
-    pwd_warn.style.display = "block";
-    flag = false;
-  } else {
-    pwd_warn.style.display = "none";
-  }
-  return flag;
-}
-
-window.onload = function () {
-  if (this.document.documentElement.clientWidth >= 1400) {
-    document.getElementById("login-container").style.height = "720px";
-    document.getElementById("index-banner").style.height = "720px";
-  }
+function init_imgs() {
   var div = document.getElementById("index-banner");
   var dots = document.getElementsByClassName("focus-anchor");
   var url = './images/';
@@ -120,14 +93,81 @@ window.onload = function () {
       }, 1000);
     }, 5000);
   }
+}
+
+function check_form_values() {
+  var input_emailAddress = document.forms['login-form'].emailAddress.value;
+  var error_tips = document.getElementById("error-tips");
+  if (input_emailAddress == null || input_emailAddress == '') {
+    error_tips.innerText = "Email address can't be empty";
+    return false;
+  }
+  var at_pos = input_emailAddress.indexOf("@");
+  var dot_pos = input_emailAddress.lastIndexOf(".");
+  if (at_pos < 1 || dot_pos < at_pos + 2 || dot_pos + 2 >= input_emailAddress.length) {
+    error_tips.innerText = "Email address type error";
+    return false;
+  }
+  var input_password = document.forms['login-form'].password.value;
+  if (input_password.length == 0) {
+    error_tips.innerText = "Password can't be empty";
+    return false;
+  } else if (input_password.length > 18 || input_password < 6) {
+    error_tips.innerText = "Password length: 6 ~ 18";
+    return false;
+  }
+  return true;
+}
+
+function click_submitBtn() {
+  if (check_form_values()) {
+    check_email_and_pwd();
+  }
+}
+
+function check_email_and_pwd() {
+  var input_emailAddress = document.forms['login-form'].emailAddress.value;
+  var input_password = document.forms['login-form'].password.value;
+  var request;
+  if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest();
+  } else {
+    request = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  request.open("POST", "login.php", true);
+  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  request.send("loginEmailAddress=" + input_emailAddress + "&loginPassword=" + input_password);
+  request.onreadystatechange = function () {
+    if (request.readyState === 4 && request.status === 200) {
+      if (request.responseText == 's') {
+        window.location.href = "../SUPFile/personal-SUPFile.html";
+      } else if (request.responseText == 'f') {
+        document.getElementById("error-tips").innerText = "Email address or Password is wrong";
+      } else {
+        alert(request.responseText);
+      }
+    }
+  };
+}
+
+window.onload = function () {
+  if (this.document.documentElement.clientWidth >= 1400) {
+    document.getElementById("login-container").style.height = "720px";
+    document.getElementById("index-banner").style.height = "720px";
+    this.document.getElementById('foot').style.marginTop = "750px";
+  }
+  this.document.getElementById("submit-btn").addEventListener('click', click_submitBtn);
+  init_imgs();
 };
 
 window.onresize = function () {
   if (this.document.documentElement.clientWidth >= 1400) {
     document.getElementById("login-container").style.height = "720px";
     document.getElementById("index-banner").style.height = "720px";
+    document.getElementById('foot').style.marginTop = "750px";
   } else {
     document.getElementById("login-container").style.height = "550px";
     document.getElementById("index-banner").style.height = "550px";
+    document.getElementById('foot').style.marginTop = "600px";
   }
 };

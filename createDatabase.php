@@ -29,8 +29,7 @@ if ($conn->connect_error) {
 //  Create table user_list
 $sql = "CREATE TABLE IF NOT EXISTS `user_list`(
   `user_id` INT UNSIGNED AUTO_INCREMENT,
-  `username` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(18) NOT NULL,
   `email_address` VARCHAR(40) NOT NULL,
   PRIMARY KEY ( `user_id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;";

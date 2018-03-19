@@ -13,56 +13,37 @@
     <div class="index-banner" id="index-banner"></div>
     <div class="header-container">
       <div class="supfile-logo">
-        <a id="supfile-logo-a" href="./index.html">SUPFile - Email Login</a>
+        <a id="supfile-logo-a" href="index.html">SUPFile - Email Login</a>
       </div>
       <span class="author-container">
         <a id="author-blog" href="http://xiehui.site">by XIE Hui</a>
       </span>
     </div>
     <div class="login-main">
-      <form action="login.php" method="post" name="login-form" onsubmit="return validateForm()">
-        <table class="input-panel">
-          <tr>
-            <td>
-              <p class="login-logo">Email Login</p>
-            </td>
-          </tr>
-          <tr>
-            <td class="emailAddress-panel">
-              <input placeholder="Email Address" class="emailAddress-input" name="emailAddress" type="text">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="height: 18px;" class="warning-panel">
-                <span id="email-warning">please input an email</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td class="password-panel">
-              <input placeholder="Password" class="password-input" name="password" type="password" autocomplete="off">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div style="height: 18px;" class="warning-panel">
-                <span id="pwd-warning">can't be empty</span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="submit" class="login-btn" value="Login">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a class="register-btn" href="register.html">Register</a>
-            </td>
-          </tr>
-        </table>
-      </form>
+      <div class="form-container">
+        <div class="login-middle">
+          <form calss="login-form" method="POST" name="login-form">
+            <div id="form-header"></div>
+            <p id="form-title">Email Address - Login</p>
+            <p id="error-tips">&nbsp;</p>
+            <p id="emailAddress-container">
+              <input type="text" style="display: none;">
+              <input id="emailAddress-input" placeholder="Email address" type="text" name="emailAddress" autocomplete="off">
+            </p>
+            <p id="password-container">
+              <input type="password" style="display: none;">
+              <input id="password-input" type="password" placeholder="Password" name="password" autocomplete="off">
+            </p>
+            <p id="submitBtn-container">
+              <input id="submit-btn" type="button" value="Login">
+            </p>
+          </form>
+        </div>
+        <div class="login-footer">
+          <a id="forget-btn" href="#">Forget Password?</a>
+          <a id="register-btn" href="./register.html">Register</a>
+        </div>
+      </div>
     </div>
     <div class="focus-content-container">
       <ul class="focus-content">
@@ -79,6 +60,13 @@
           <a class="focus-anchor" id="3"></a>
         </li>
       </ul>
+    </div>
+  </div>
+  <div id="foot">
+    <div id="mod-footer">
+      ©2018 SUPFile&nbsp;&nbsp;
+      <a class="a-footer" href="mailto:219633@supinfo.com">Email |</a>
+      <a class="a-footer" href="https://github.com/xiehui07/SUPFile">GitHub</a>
     </div>
   </div>
 </body>

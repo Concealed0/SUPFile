@@ -1,53 +1,316 @@
 body {
-  margin-top: 0;
-  margin-left: 0;
-  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background: 0px 0px;
+  margin: 0;
+  padding: 0;
 }
 
-.register-panel {
-  text-align: center;
-  font-size: 18px;
-  margin-top: 100px;
+div {
+  display: block;
 }
 
-.table-panel {
+label {
+  cursor: default;
+  display: block;
   float: left;
-  width: 60%;
-}
-
-.warning-panel {
-  float: left;
-  width: 40%;
-  height: 90px;
-}
-
-.register-table {
-  font-size: 16px;
-  width: 50%;
-  float: right;
-  text-align: left;
-}
-
-.input {
-  text-align: center;
-}
-
-.register-btn {
-  margin-left: 40px;
-  width: 70px;
-  font-size: 16px;
-}
-
-.back-btn {
+  height: 42px;
+  width: 100px;
+  margin-right: 10px;
+  line-height: 42px;
   font-size: 14px;
-  text-decoration: none;
-  margin-left: 30px;
+  color: #666;
+  font-weight: 400;
+  text-align: right;
 }
 
-span {
-  display: none;
-  color: red;
-  font-size: 12px;
+p {
+  font-size: 14px;
+  color: #666;
+  font-weight: 200;
+}
+
+h3 {
+  text-align: center;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+#wrapper {
+  width: 100%;
+}
+
+#head {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  height: 40px;
+  z-index: 100;
+}
+
+#head-title {
+  display: inline;
+  margin-left: 20px;
+}
+
+#head-a {
+  font-size: 30px;
+  width: 430px;
+  text-decoration: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: 200;
+}
+
+#login-link {
+  display: inline;
+  margin-left: 350px;
+  color: #666;
+  position: absolute;
+}
+
+#login-span {
+  font-weight: 100;
   float: left;
-  margin-top: 5px;
+  display: block;
+  margin-right: 5px;
+  margin-top: 10px;
+  width: 171px;
+}
+
+#login-a {
+  position: absolute;
+  margin-top: 2px;
+  cursor: pointer;
+  background-color: #fff;
+  width: 60px;
+  padding: 6px 0;
+  border: 1px solid #bad4fd;
+  color: #3582f8;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#nav {
+  width: 100%;
+  z-index: 1;
+  background: 0 0;
+}
+
+#nav-2 {
+  height: 20px;
+  background: url(../images/reg_hr.png) no-repeat center top;
+}
+
+#content {
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#content-container {
+  position: relative;
+  zoom: 1;
+}
+
+#register-container {
+  position: relative;
+  width: 720px;
+  overflow: hidden;
+  float: left;
+}
+
+#register-form {
+  margin: 0;
+  padding: 0;
+}
+
+#form-header {
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: 40px;
+}
+
+#emailAddress-input-container {
+  position: relative;
+  clear: both;
+  margin-bottom: 20px;
+  zoom: 1;
+  height: 42px;
+}
+
+#register-form-emailAddress {
+  display: block;
+  position: relative;
+  float: left;
+  height: 16px;
+  width: 290px;
+  padding: 11px 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+  transition: .3s;
+}
+
+#emailAddress-error {
+  position: relative;
+  float: left;
+  top: 14px;
+  color: #fc4343;
+  height: 16px;
+  line-height: 12px;
+  padding-left: 2x;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+#password-input-container {
+  position: relative;
+  clear: both;
+  margin-bottom: 20px;
+  zoom: 1;
+  height: 42px;
+}
+
+#register-form-password {
+  display: block;
+  position: relative;
+  float: left;
+  height: 16px;
+  width: 290px;
+  padding: 11px 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+  transition: .3s;
+}
+
+#password-error {
+  position: relative;
+  float: left;
+  top: 14px;
+  color: #fc4343;
+  height: 16px;
+  line-height: 12px;
+  padding-left: 2px;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+#idCode-input-container {
+  position: relative;
+  clear: both;
+  margin-bottom: 20px;
+  zoom: 1;
+  height: 42px;
+}
+
+#register-form-idCode {
+  display: block;
+  position: relative;
+  float: left;
+  height: 16px;
+  width: 120px;
+  padding: 11px 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+  transition: .3s;
+}
+
+#idCode-get-btn {
+  border-radius: 0;
+  border: 1px solid #ddd;
+  height: 40px;
+  background: #f7f7f7;
+  color: #666;
+  font-weight: 400;
+  width: 160px;
+  float: left;
+  margin-right: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  -webkit-transition: .3s;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+}
+
+#idCode-error {
+  position: relative;
+  float: left;
+  top: 14px;
+  color: #fc4343;
+  height: 16px;
+  line-height: 12px;
+  padding-left: 2px;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+#submit-btn-container {
+  position: relative;
+  left: 110px;
+  clear: both;
+  margin-bottom: 20px;
+  zoom: 1;
+  height: 50px;
+}
+
+#submit-btn {
+  background-color: #3f89ec;
+  text-align: center;
+  line-height: 32px;
+  float: left;
+  width: 312px;
+  display: block;
+  height: 50px;
+  font-size: 24px;
+  font-weight: 200;
+  cursor: pointer;
+  color: #fff;
+  border: 0px;
+  border-radius: 4px;
+  -webkit-transition: .3s;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+}
+
+#info-container {
+  width: 258px;
+  border: 1px solid #d1eeff;
+  background-color: #f5fbff;
+  margin-top: 40px;
+  float: right;
+}
+
+#warning-info-container {
+  margin: 0 10px;
+}
+
+#foot {
+  text-align: center;
+  color: #7a77c8;
+  margin-top: 450px;
+  width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#mod-footer {
+  text-align: center;
+  color: #7a77c8;
 }

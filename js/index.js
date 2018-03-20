@@ -120,8 +120,11 @@ function check_form_values() {
 }
 
 function click_submitBtn() {
+  document.getElementById("submit-btn").value = 'Login...';
   if (check_form_values()) {
     check_email_and_pwd();
+  } else {
+    document.getElementById("submit-btn").value = 'Login';
   }
 }
 
@@ -139,6 +142,7 @@ function check_email_and_pwd() {
   request.send("loginEmailAddress=" + input_emailAddress + "&loginPassword=" + input_password);
   request.onreadystatechange = function () {
     if (request.readyState === 4 && request.status === 200) {
+      document.getElementById("submit-btn").value = 'Login';
       if (request.responseText == 's') {
         window.location.href = "../SUPFile/personal-SUPFile.html";
       } else if (request.responseText == 'f') {

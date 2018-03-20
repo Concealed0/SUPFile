@@ -55,7 +55,11 @@ In a folder it must be possible to drag and drop a new file.
 文件或文件夹上的上下文菜单必须能够重命名，删除，下载，移动到另一个文件夹并创建链接以公开分享。
 
 ## Contact me
+
 Name: XIE Hui
+
 Blog: [xiehui.site](http://xiehui.site)
+
 E-mail: 219633@supinfo.com
+
 Campus: SUPINFO - Hebut Tianjin

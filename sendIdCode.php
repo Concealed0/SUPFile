@@ -22,7 +22,7 @@ if ($result->num_rows > 0) {
   $pwd = $result->fetch_array()[0];
   $to = $forgetInputEmailAddress;
   $title = 'SUPFile - Account password';
-  $content = 'Your password: ' . $pwd . ' (from supfile.top/SUPFile/)';
+  $content = 'Your password: ' . $pwd . ' (from supfile.top/SUPFile/).';
   if (sendMail($to,$title,$content)) {
     echo "s";
   } else {

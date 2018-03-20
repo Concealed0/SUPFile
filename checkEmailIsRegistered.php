@@ -6,7 +6,7 @@ $input_emailAddress = $_POST['emailAddress'];
 
 function sendIdMail($to, $num) {
   $title = 'Security Code';
-  $content = 'Your security code: ' . $num . ' (from supfile.top/SUPFile/)';
+  $content = 'Your security code: ' . $num . ' (from supfile.top/SUPFile/).';
   if (sendMail($to,$title,$content)) {
     echo "1";
   } else {

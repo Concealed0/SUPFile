@@ -161,10 +161,8 @@ function click_forgetBtn() {
   var dot_pos = input_emailAddress.lastIndexOf(".");
   if (input_emailAddress == null || input_emailAddress == '') {
     error_tips.innerText = "Email address can't be empty";
-    return false;
   } else if (at_pos < 1 || dot_pos < at_pos + 2 || dot_pos + 2 >= input_emailAddress.length) {
     error_tips.innerText = "Email address type error";
-    return false;
   } else {
     var request;
     if (window.XMLHttpRequest) {
@@ -178,11 +176,11 @@ function click_forgetBtn() {
     request.onreadystatechange = function () {
       if (request.readyState === 4 && request.status === 200) {
         if (request.responseText.charAt(request.responseText.length - 1) == 's') {
-          document.getElementById("error-tips").innerText = "We send your password to your email";
+          error_tips.innerText = "We send your password to your email";
         } else if (request.responseText == 'f') {
-          document.getElementById("error-tips").innerText = "Email hasn't been registered";
+          error_tips.innerText = "Email hasn't been registered";
         } else if (request.responseText.charAt(request.responseText.length - 1) == 'e') {
-          document.getElementById("error-tips").innerText = "Send password error, please try again";
+          error_tips.innerText = "Send password error, please try again";
         } else {
           alert(request.responseText);
         }

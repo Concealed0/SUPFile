@@ -156,28 +156,39 @@ function check_email_and_pwd() {
 
 function click_forgetBtn() {
   var input_emailAddress = document.forms['login-form'].emailAddress.value;
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
+  var error_tips = document.getElementById("error-tips");
+  var at_pos = input_emailAddress.indexOf("@");
+  var dot_pos = input_emailAddress.lastIndexOf(".");
+  if (input_emailAddress == null || input_emailAddress == '') {
+    error_tips.innerText = "Email address can't be empty";
+    return false;
+  } else if (at_pos < 1 || dot_pos < at_pos + 2 || dot_pos + 2 >= input_emailAddress.length) {
+    error_tips.innerText = "Email address type error";
+    return false;
   } else {
-    request = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  request.open("POST", "sendIdCode.php", true);
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  request.send("forgetInputEmailAddress=" + input_emailAddress);
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      if (request.responseText.charAt(request.responseText.length - 1) == 's') {
-        document.getElementById("error-tips").innerText = "We send your password to your email";
-      } else if (request.responseText == 'f') {
-        document.getElementById("error-tips").innerText = "Email hasn't been registered";
-      } else if (request.responseText.charAt(request.responseText.length - 1) == 'e') {
-        document.getElementById("error-tips").innerText = "Send password error, please try again";
-      } else {
-        alert(request.responseText);
-      }
+    var request;
+    if (window.XMLHttpRequest) {
+      request = new XMLHttpRequest();
+    } else {
+      request = new ActiveXObject("Microsoft.XMLHTTP");
     }
-  };
+    request.open("POST", "sendIdCode.php", true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.send("forgetInputEmailAddress=" + input_emailAddress);
+    request.onreadystatechange = function () {
+      if (request.readyState === 4 && request.status === 200) {
+        if (request.responseText.charAt(request.responseText.length - 1) == 's') {
+          document.getElementById("error-tips").innerText = "We send your password to your email";
+        } else if (request.responseText == 'f') {
+          document.getElementById("error-tips").innerText = "Email hasn't been registered";
+        } else if (request.responseText.charAt(request.responseText.length - 1) == 'e') {
+          document.getElementById("error-tips").innerText = "Send password error, please try again";
+        } else {
+          alert(request.responseText);
+        }
+      }
+    };
+  }
 }
 
 window.onload = function () {

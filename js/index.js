@@ -1,100 +1,3 @@
-function init_imgs() {
-  var div = document.getElementById("index-banner");
-  var dots = document.getElementsByClassName("focus-anchor");
-  var url = './images/';
-  var arr = [];
-  var index = 0;
-  var timer = null;
-
-  for (var i = 0; i < 4; i++) {
-    dots[i].addEventListener('mouseup', mouse_up, false);
-  }
-
-  arr[index] = new Image();
-  arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
-  arr[index].load = function () {
-    div.style.backgroundImage = 'url(' + this.src + ')';
-  };
-  dots[index].style.opacity = 1;
-  arr[index].load();
-  div.style.opacity = 1;
-
-  timer = setInterval(function () {
-    index++;
-    if (index >= 4) {
-      index = 0;
-    }
-    if (arr[index] == null) {
-      arr[index] = new Image();
-      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
-      arr[index].load = function () {
-        div.style.backgroundImage = 'url(' + this.src + ')';
-      };
-    }
-    div.style.opacity = 0.001;
-    setTimeout(function () {
-      arr[index].load();
-      div.style.opacity = 1;
-      dots[index].style.opacity = 1;
-      if (index == 0) {
-        dots[3].style.opacity = 0.5;
-      } else {
-        dots[index - 1].style.opacity = 0.5;
-      }
-    }, 1000);
-  }, 5000);
-
-  function mouse_up(event) {
-    event = event ? event : window.event;
-    var obj = event.srcElement ? event.srcElement : event.target;
-    index = obj.id;
-
-    clearTimeout();
-    clearInterval(timer);
-    if (arr[index] == null) {
-      arr[index] = new Image();
-      arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
-      arr[index].load = function () {
-        div.style.backgroundImage = 'url(' + this.src + ')';
-      };
-    }
-    arr[index].load();
-    div.style.opacity = 1;
-    for (var i = 0; i < 4; i++) {
-      if (i != index) {
-        dots[i].style.opacity = 0.5;
-      } else {
-        dots[i].style.opacity = 1;
-      }
-    }
-
-    timer = setInterval(function () {
-      index++;
-      if (index >= 4) {
-        index = 0;
-      }
-      if (arr[index] == null) {
-        arr[index] = new Image();
-        arr[index].src = './images/' + (parseInt(index) + 1) + '.jpg';
-        arr[index].load = function () {
-          div.style.backgroundImage = 'url(' + this.src + ')';
-        };
-      }
-      div.style.opacity = 0.001;
-      setTimeout(function () {
-        arr[index].load();
-        div.style.opacity = 1;
-        dots[index].style.opacity = 1;
-        if (index == 0) {
-          dots[3].style.opacity = 0.5;
-        } else {
-          dots[index - 1].style.opacity = 0.5;
-        }
-      }, 1000);
-    }, 5000);
-  }
-}
-
 function check_form_values() {
   var input_emailAddress = document.forms['login-form'].emailAddress.value;
   var error_tips = document.getElementById("error-tips");
@@ -197,7 +100,89 @@ window.onload = function () {
   }
   this.document.getElementById("submit-btn").addEventListener('click', click_submitBtn);
   this.document.getElementById("forget-btn").addEventListener('click', click_forgetBtn);
-  init_imgs();
+  var background_player = new background_loading(document.getElementById("index-banner"), document.getElementsByClassName("focus-anchor"));
+  background_player._init();
+};
+
+function background_loading(div, dots) {
+  this.div = div;
+  this.dots = dots;
+}
+
+background_loading.prototype._init = function () {
+  this.url = './images/';
+  this.arr = [];
+  this.index = 0;
+  this.timer = null;
+  this.play_timer = null;
+  this._init_events();
+  for (var i = 0; i < 4; i++) {
+    this.dots[i].addEventListener('mouseup', mouse_up, false);
+  }
+  var _this = this;
+  function mouse_up(event) {
+    event = event ? event : window.event;
+    var obj = event.srcElement ? event.srcElement : event.target;
+    _this.index = obj.id;
+    for (var i = 0; i < 4; i++) {
+      if (i != _this.index) {
+        _this.dots[i].style.opacity = 0.5;
+      } else {
+        _this.dots[i].style.opacity = 1;
+      }
+    }
+    clearTimeout(_this.timer);
+    _this._init_events();
+  }
+};
+
+background_loading.prototype._init_events = function () {
+  if (this.arr[this.index] == null) {
+    this._init_image();
+  }
+
+  this.dots[this.index].style.opacity = 1;
+  this.arr[this.index].load();
+  this.div.style.opacity = 1;
+
+  var _this = this;
+  this.timer = setTimeout(set_timer, 5000);
+  function set_timer() {
+    _this.index++;
+    if (_this.index >= 4) {
+      _this.index = 0;
+    }
+    if (_this.arr[_this.index] == null) {
+      _this._init_image();
+    }
+    _this.div.style.opacity = 0.001;
+    clearTimeout(_this.play_timer);
+    clearTimeout(_this.timer);
+    _this.play_timer = setTimeout(play_image_and_dots, 1000);
+    _this.timer = setTimeout(set_timer, 5000);
+  }
+
+  function play_image_and_dots() {
+    _this.arr[_this.index].load();
+    _this.div.style.opacity = 1;
+    _this.dots[_this.index].style.opacity = 1;
+    for (var i = 0; i < 4; i++) {
+      if (i != _this.index) {
+        _this.dots[i].style.opacity = 0.5;
+      } else {
+        _this.dots[i].style.opacity = 1;
+      }
+    }
+  }
+};
+
+background_loading.prototype._init_image = function () {
+  var div = this.div;
+  this.arr[this.index] = new Image();
+  this.arr[this.index].src = './images/' + (parseInt(this.index) + 1) + '.jpg';
+  this.arr[this.index].load = function () {
+    div.style.backgroundImage = 'url(' + this.src + ')';
+  };
 };
 
 window.onresize = function () {

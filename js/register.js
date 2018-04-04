@@ -105,16 +105,17 @@ function check_emailAddress_is_registered() {
         emailAddress_tip.innerText = "Email hes been registered";
         emailAddress_tip.style.color = '#fc4343';
         emailAddress_tip.style.display = 'block';
-      }
-      var idCode_tip = document.getElementById("idCode-error");
-      if (r.charAt(r.length - 1) == "1") {
-        idCode_tip.innerText = "Send security code success";
-        idCode_tip.style.color = '#999';
-        idCode_tip.style.display = 'block';
-      } else if (r.charAt(r.length - 1) == "0") {
-        idCode_tip.innerText = "Send security code error";
-        idCode_tip.style.color = '#fc4343';
-        idCode_tip.style.display = 'block';
+      } else {
+        var idCode_tip = document.getElementById("idCode-error");
+        if (r.charAt(r.length - 1) == "1") {
+          idCode_tip.innerText = "Send security code success";
+          idCode_tip.style.color = '#999';
+          idCode_tip.style.display = 'block';
+        } else if (r.charAt(r.length - 1) == "0") {
+          idCode_tip.innerText = "Send security code error";
+          idCode_tip.style.color = '#fc4343';
+          idCode_tip.style.display = 'block';
+        }
       }
     }
   };

@@ -14,7 +14,7 @@ function sendMail($to,$title,$content){
   $mail->CharSet = 'UTF-8';
   $mail->FromName = 'SUPFile - Administrator';
   $mail->Username ='administrator@supfile.top';
-  $mail->Password = 'syaki9499,';
+  $mail->Password = '';
   $mail->From = 'administrator@supfile.top';
   $mail->isHTML(true);
   $mail->addAddress($to,'SUPFile Account');

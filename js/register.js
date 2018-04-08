@@ -1,47 +1,69 @@
 function click_submit_btn() {
   if (test_form_values_type()) {
-    check_idCode_and_emailAddress_is_edited();
-  }
-}
-
-function check_idCode_and_emailAddress_is_edited() {
-  var input_emailAddress = document.forms['register-form'].emailAddress.value;
-  var input_password = document.forms['register-form'].password.value;
-  var input_idCode = document.forms['register-form'].idCode.value;
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-  } else {
-    request = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  request.open("POST", "checkEmailIsEdited.php", true);
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  request.send("emailAddress=" + input_emailAddress + "&inputIdCode=" + input_idCode + "&inputPassword=" + input_password);
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      if (request.responseText == 'e') {
-        var idCode_tip = document.getElementById("idCode-error");
-        idCode_tip.innerText = "Security code error";
-        idCode_tip.style.color = '#fc4343';
-        idCode_tip.style.display = 'block';
-      } else if (request.responseText == 'c') {
-        var emailAddress_tip = document.getElementById("emailAddress-error");
-        emailAddress_tip.innerText = "Email address error";
-        emailAddress_tip.style.color = '#fc4343';
-        emailAddress_tip.style.display = 'block';
-      } else if (request.responseText == 's') {
-        alert("Register Success!");
-        window.location.href = "../SUPFile/index.html";
-      } else {
-        alert("Error: " + request.responseText);
+    var input_emailAddress = document.forms['register-form'].emailAddress.value;
+    var input_password = document.forms['register-form'].password.value;
+    var input_idCode = document.forms['register-form'].idCode.value;
+    ajax({
+      method: "POST",
+      url: "checkEmailIsEdited.php",
+      async: true,
+      data: {
+        emailAddress: input_emailAddress,
+        inputIdCode: input_idCode,
+        inputPassword: input_password
+      },
+      success: function (response_text) {
+        if (response_text == 'e') {
+          var idCode_tip = document.getElementById("idCode-error");
+          idCode_tip.innerText = "Security code error";
+          idCode_tip.style.color = '#fc4343';
+          idCode_tip.style.display = 'block';
+        } else if (response_text == 'c') {
+          var emailAddress_tip = document.getElementById("emailAddress-error");
+          emailAddress_tip.innerText = "Email address error";
+          emailAddress_tip.style.color = '#fc4343';
+          emailAddress_tip.style.display = 'block';
+        } else if (response_text == 's') {
+          alert("Register Success!");
+          window.location.href = "../SUPFile/index.html";
+        } else {
+          alert("Error: " + response_text);
+        }
       }
-    }
-  };
+    });
+  }
 }
 
 function click_idCode_get_btn() {
   if (test_form_values_type()) {
-    check_emailAddress_is_registered();
+    var input_emailAddress = document.forms['register-form'].emailAddress.value;
+    ajax({
+      method: "POST",
+      url: "checkEmailIsRegistered.php",
+      async: true,
+      data: {
+        emailAddress: input_emailAddress
+      },
+      success: function (response_text) {
+        if (response_text == 'true') {
+          var emailAddress_tip = document.getElementById("emailAddress-error");
+          emailAddress_tip.innerText = "Email hes been registered";
+          emailAddress_tip.style.color = '#fc4343';
+          emailAddress_tip.style.display = 'block';
+        } else {
+          var idCode_tip = document.getElementById("idCode-error");
+          if (response_text.charAt(response_text.length - 1) == "1") {
+            idCode_tip.innerText = "Send security code success";
+            idCode_tip.style.color = '#999';
+            idCode_tip.style.display = 'block';
+          } else if (response_text.charAt(response_text.length - 1) == "0") {
+            idCode_tip.innerText = "Send security code error";
+            idCode_tip.style.color = '#fc4343';
+            idCode_tip.style.display = 'block';
+          }
+        }
+      }
+    });
   }
 }
 
@@ -84,41 +106,6 @@ function test_form_values_type() {
     return false;
   }
   return true;
-}
-
-function check_emailAddress_is_registered() {
-  var input_emailAddress = document.forms['register-form'].emailAddress.value;
-  var request;
-  if (window.XMLHttpRequest) { //  IE7+, Firefox, Chrome, Opera, Safari
-    request = new XMLHttpRequest();
-  } else { // IE6, IE5
-    request = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  request.open("POST", "checkEmailIsRegistered.php", true);
-  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  request.send("emailAddress=" + input_emailAddress);
-  request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
-      var r = request.responseText;
-      if (r == 'true') {
-        var emailAddress_tip = document.getElementById("emailAddress-error");
-        emailAddress_tip.innerText = "Email hes been registered";
-        emailAddress_tip.style.color = '#fc4343';
-        emailAddress_tip.style.display = 'block';
-      } else {
-        var idCode_tip = document.getElementById("idCode-error");
-        if (r.charAt(r.length - 1) == "1") {
-          idCode_tip.innerText = "Send security code success";
-          idCode_tip.style.color = '#999';
-          idCode_tip.style.display = 'block';
-        } else if (r.charAt(r.length - 1) == "0") {
-          idCode_tip.innerText = "Send security code error";
-          idCode_tip.style.color = '#fc4343';
-          idCode_tip.style.display = 'block';
-        }
-      }
-    }
-  };
 }
 
 function init_tips() {

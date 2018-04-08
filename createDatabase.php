@@ -38,5 +38,18 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Create table error: " . $conn->error;
 }
+
+//  Create table admin_email_list
+$sql = "CREATE TABLE IF NOT EXISTS `admin_email_list`(
+  `user_id` INT UNSIGNED AUTO_INCREMENT,
+  `password` VARCHAR(20) NOT NULL,
+  `email_address` VARCHAR(40) NOT NULL,
+  PRIMARY KEY ( `user_id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+if ($conn->query($sql) === TRUE) {
+  echo "Table MyGuests created successfully";
+} else {
+  echo "Create table error: " . $conn->error;
+}
 $conn->close();
 ?>
